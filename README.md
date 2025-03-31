@@ -246,3 +246,37 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+# Install by 99ailinks
+- build gpustack-ui, copy ui dist into uidist
+- make build-docker
+- install
+  acquire DNS name on dnspod, and set up resolion, aquire a ssl certificate. we assume the worker is listening on 10.20.10.10, which is a inner ip the server can access.
+ assume the ip address
+  ```
+  docker run -d --name gpustack \
+    --restart=unless-stopped \
+    --gpus all \
+    --network=host \
+    --ipc=host \
+    -v gpustack-data:/var/lib/gpustack \
+    -v /root/myprojects/ai-codes/dify/models.ailinks.chat_nginx:/ssls \
+    ailinks/gpustack:v0.5.1 \
+    --bootstrap-password=99cloud@1QAZ --ssl-keyfile /ssls/models.ailinks.chat.key --ssl-certfile /ssls/models.ailinks.chat_bundle.crt  --worker-ip 10.20.10.10
+  ```
+
+start worker only:
+
+get token from server container:
+```
+docker exec -it gpustack cat /var/lib/gpustack/token
+```
+
+add name resolution on the worker:
+```
+grep -qxF "10.20.10.10 models.ailinks.chat" /etc/hosts || echo "10.20.10.10 models.ailinks.chat" | sudo tee -a /etc/hosts
+```
+启动worker：
+```
+docker run -d --name gpustack-worker --restart=unless-stopped --gpus all --network=host --ipc=host -v gpustack-worker-data:/var/lib/gpustack registry.ailink.com:5000/ailinks/gpustack:v0.5.1 --server-url https://models.ailinks.chat --token 02ead16e391f968cfd7ece086177ff2e --worker-ip 10.20.10.32 --debug
+```

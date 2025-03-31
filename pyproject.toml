@@ -1,3 +1,9 @@
+[[tool.poetry.source]]
+name = "foo"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+default = true
+secondary = true
+
 [tool.poetry]
 name = "gpustack"
 version = "v0.0.0"

@@ -62,6 +62,10 @@ function copy_extra_static() {
 
 gpustack::log::info "+++ DEPENDENCIES +++"
 download_deps
-download_ui
+# if [[ "x${UI_DIR}y" == "xy"]]; then
+# download_ui
+# else
+cp -a "${ROOT_DIR}/uidist/." "${ROOT_DIR}/gpustack/ui"
+# fi
 copy_extra_static
 gpustack::log::info "--- DEPENDENCIES ---"
