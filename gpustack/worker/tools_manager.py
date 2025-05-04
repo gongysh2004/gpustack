@@ -242,7 +242,11 @@ class ToolsManager:
             suffix,
             f"{package}=={version}",
         ]
-
+        pip_index = os.getenv("PIP_INDEX")
+        if pip_index:
+            # Insert --index-url and its value after the "install" command
+            install_command.insert(2, "--index-url")
+            install_command.insert(3, pip_index)
         try:
             logger.info(f"Installing {package} {version} using pipx")
             subprocess.run(install_command, check=True, text=True)

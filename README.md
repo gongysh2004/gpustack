@@ -261,7 +261,7 @@ limitations under the License.
     --ipc=host \
     -v gpustack-data:/var/lib/gpustack \
     -v /root/myprojects/ai-codes/dify/models.ailinks.chat_nginx:/ssls \
-    ailinks/gpustack:v0.5.1 \
+    registry.ailink.com:5000/ailinks/gpustack:v0.5.2 \
     --bootstrap-password=99cloud@1QAZ --ssl-keyfile /ssls/models.ailinks.chat.key --ssl-certfile /ssls/models.ailinks.chat_bundle.crt  --worker-ip 10.20.10.10
   ```
 
@@ -274,9 +274,9 @@ docker exec -it gpustack cat /var/lib/gpustack/token
 
 add name resolution on the worker:
 ```
-grep -qxF "10.20.10.10 models.ailinks.chat" /etc/hosts || echo "10.20.10.10 models.ailinks.chat" | sudo tee -a /etc/hosts
+grep -qxF "10.20.10.10 models.dev.ai-links.com" /etc/hosts || echo "10.20.10.10 models.dev.ai-links.com" | sudo tee -a /etc/hosts
 ```
 启动worker：
 ```
-docker run -d --name gpustack-worker --restart=unless-stopped --gpus all --network=host --ipc=host -v gpustack-worker-data:/var/lib/gpustack registry.ailink.com:5000/ailinks/gpustack:v0.5.1 --server-url https://models.ailinks.chat --token 02ead16e391f968cfd7ece086177ff2e --worker-ip 10.20.10.32 --debug
+docker run -d --name gpustack-worker --restart=unless-stopped --gpus all --network=host --ipc=host -v gpustack-worker-data:/var/lib/gpustack registry.dev.ai-links.com/ailinks/gpustack:v0.5.1 --server-url https://models.dev.ai-links.com --token 02ead16e391f968cfd7ece086177ff2e --worker-ip 10.20.10.32 --debug
 ```

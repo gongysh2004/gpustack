@@ -63,11 +63,19 @@ async def proxy(request: Request, url: str):
             response = await client.request(
                 request.method, url, headers=forwarded_headers, data=data
             )
+            res_headers = {}
+            # Remove transfer-encoding header if chunked, it will cause issues
+            # if it is behind a nginx reverse proxy
+            for key, value in response.headers.items():
+                if key=="transfer-encoding" and value=="chunked":
+                    continue
+                else:
+                    res_headers[key] = value
 
             return Response(
                 status_code=response.status_code,
                 content=response.content,
-                headers=response.headers,
+                headers=res_headers,
                 media_type=response.headers.get("Content-Type"),
             )
         except Exception as e:
