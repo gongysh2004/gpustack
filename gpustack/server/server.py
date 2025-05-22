@@ -96,8 +96,8 @@ class Server:
             app,
             host=host,
             port=port,
-            access_log=False,
-            log_level="error",
+            access_log=True,
+            log_level='error' if not self._config.debug else "debug",
             ssl_certfile=self._config.ssl_certfile,
             ssl_keyfile=self._config.ssl_keyfile,
         )
