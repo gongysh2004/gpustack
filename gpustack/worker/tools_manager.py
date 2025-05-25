@@ -68,7 +68,6 @@ class ToolsManager:
 
     def _check_and_set_download_base_url(self):
         urls = [
-            "https://github.com",
             "https://gpustack-1303613262.cos.ap-guangzhou.myqcloud.com",
         ]
 

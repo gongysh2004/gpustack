@@ -2,7 +2,7 @@ import argparse
 import logging
 import sys
 
-from gpustack.cmd.start import get_gpustack_env
+from gpustack.cmd.start import get_gpustack_env, get_gpustack_env_bool
 from gpustack.logging import setup_logging
 from gpustack.worker.tools_manager import ToolsManager
 
@@ -52,12 +52,18 @@ def setup_download_tools_cmd(subparsers: argparse._SubParsersAction):
         help="Device to download tools for. Default is the current device. (e.g. cuda, mps, npu, musa, cpu)",
         default=get_gpustack_env("DEVICE"),
     )
-
+    parser.add_argument(
+        "-d",
+        "--debug",
+        type=bool,
+        help="Enable debug mode.",
+        default=get_gpustack_env_bool("DEBUG"),
+    )
     parser.set_defaults(func=run)
 
 
 def run(args):
-    setup_logging(False)
+    setup_logging(args.debug)
     try:
         verify(args)
 

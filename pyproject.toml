@@ -42,7 +42,7 @@ ray = {version = "2.43.0", extras = ["default"]} # Align with BUILTIN_RAY_VERSIO
 vllm = {version = "0.8.5.post1", optional = true}
 mistral_common = {version = "^1.4.3", optional = true, extras = ["opencv"]}
 uvicorn = "^0.32.0"
-transformers = "^4.51.1"
+transformers = "^v4.52.2"
 fastapi-cdn-host = "^0.8.0"
 wmi = { version="^1.5.1", markers = "platform_system == 'Windows'" }
 pywin32 = { version="^308", markers = "platform_system == 'Windows'" }

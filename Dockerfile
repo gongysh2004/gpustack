@@ -1,7 +1,7 @@
 ARG CUDA_VERSION=12.4.1
 ARG CUDA_TAG_SUFFIX=-cudnn-runtime-ubuntu22.04
 
-FROM nvidia/cuda:${CUDA_VERSION}${CUDA_TAG_SUFFIX}
+FROM ngc.nju.edu.cn/nvidia/cuda:${CUDA_VERSION}${CUDA_TAG_SUFFIX} AS base
 
 ARG TARGETPLATFORM
 ENV DEBIAN_FRONTEND=noninteractive
@@ -18,10 +18,12 @@ RUN apt-get update && apt-get install -y \
     tini \
     && rm -rf /var/lib/apt/lists/*
 
+FROM base AS builder0
 COPY . /workspace/gpustack
+ARG VERSION
 RUN cd /workspace/gpustack && \
-    make build
-
+    VERSION=${VERSION} make build
+FROM builder0 AS builder1
 ARG VLLM_VERSION=0.8.5.post1
 RUN <<EOF
     if [ "$TARGETPLATFORM" = "linux/amd64" ]; then
@@ -40,9 +42,13 @@ RUN <<EOF
     rm -rf /workspace/gpustack
 EOF
 
+FROM builder1 AS final
+
 RUN gpustack download-tools
 
 # Download dac weights used by audio models like Dia
+# add github proxy
+COPY hack/dac/utils/__init__.py /usr/local/lib/python3.10/dist-packages/dac/utils/__init__.py
 RUN python3 -m dac download
 
 ENTRYPOINT [ "tini", "--", "gpustack", "start" ]

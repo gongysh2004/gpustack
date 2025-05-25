@@ -1,0 +1,3087 @@
+- name: Llama4
+  description: The Llama 4 collection of models are natively multimodal AI models
+    that enable text and multimodal experiences. These models leverage a mixture-of-experts
+    architecture to offer industry-leading performance in text and image understanding.
+  home: https://www.llama.com/
+  icon: /static/catalog_icons/meta.png
+  categories:
+  - llm
+  capabilities:
+  - context/10M
+  - vision
+  sizes:
+  - 109
+  - 400
+  licenses:
+  - llama4
+  release_date: '2025-04-05'
+  templates:
+  - quantizations:
+    - UD-IQ1_M
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - BF16
+    sizes:
+    - 109
+    source: model_scope
+    model_scope_model_id: unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - UD-IQ1_M
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    sizes:
+    - 400
+    source: model_scope
+    model_scope_model_id: unsloth/Llama-4-Maverick-17B-128E-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    sizes:
+    - 109
+    source: model_scope
+    model_scope_model_id: unsloth/Llama-4-Scout-17B-16E-Instruct
+    replicas: 1
+    backend: vllm
+  - quantizations:
+    - BF16
+    sizes:
+    - 400
+    source: model_scope
+    model_scope_model_id: unsloth/Llama-4-Maverick-17B-128E-Instruct
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Llama 4模型集是基于多模态人工智能模型，使文本和多模态体验成为可能。这些模型采用混合专家架构来提供行业领先的性能，特别是在文本理解和图像理解方面。
+- name: Llama3.3
+  description: The Meta Llama 3.3 multilingual large language model (LLM) is an instruction
+    tuned generative model in 70B (text in/text out). The Llama 3.3 instruction tuned
+    text only model is optimized for multilingual dialogue use cases and outperforms
+    many of the available open source and closed chat models on common industry benchmarks.
+  home: https://www.llama.com/
+  icon: /static/catalog_icons/meta.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 70
+  licenses:
+  - llama3.3
+  release_date: '2024-12-06'
+  templates:
+  - quantizations: &id004
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    - f16
+    source: model_scope
+    model_scope_model_id: bartowski/Llama-3.3-70B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/Llama-3.3-70B-Instruct
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Meta Llama 3.3 是一个70B的（文本在/文本出）多语言大型语言模型（LLM）。该LLM 3.3指令优化的多语言对话使用场景，比许多可用的开源和封闭聊天模型在常见行业的基准上表现更好。
+- name: Llama3.2
+  description: The Llama 3.2 collection of multilingual large language models (LLMs)
+    is a collection of pretrained and instruction-tuned generative models in 1B and
+    3B sizes (text in/text out). The Llama 3.2 instruction-tuned text only models
+    are optimized for multilingual dialogue use cases, including agentic retrieval
+    and summarization tasks. They outperform many of the available open source and
+    closed chat models on common industry benchmarks.
+  home: https://www.llama.com/
+  icon: /static/catalog_icons/meta.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 1
+  - 3
+  licenses:
+  - llama3.2
+  release_date: '2024-09-25'
+  templates:
+  - quantizations:
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    - f16
+    source: model_scope
+    model_scope_model_id: bartowski/Llama-3.2-{size}B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/Llama-3.2-{size}B-Instruct
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=llama3_json
+    - --chat-template={data_dir}/chat_templates/tool_chat_template_llama3.2_json.jinja
+  description_zh_CN: Llama 3.2 集合包含了多语种大型语言模型（LLMs）的预训练和指令优化的生成模型，大小为 1B 和 3B。Llama 3.2
+    仅训练的文本模型是在文本输出和文本输入之间进行优化的。它们在多语种对话使用场景中出类拔萃。
+- name: Llama3.1
+  description: The Meta Llama 3.1 collection of multilingual large language models
+    (LLMs) is a collection of pretrained and instruction tuned generative models in
+    8B, 70B and 405B sizes (text in/text out). The Llama 3.1 instruction tuned text
+    only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases
+    and outperform many of the available open source and closed chat models on common
+    industry benchmarks.
+  home: https://www.llama.com/
+  icon: /static/catalog_icons/meta.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 8
+  - 70
+  - 405
+  licenses:
+  - llama3.1
+  release_date: '2024-07-23'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    sizes:
+    - 8
+    - 70
+    source: model_scope
+    model_scope_model_id: bartowski/Meta-Llama-3.1-{size}B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: LLM-Research/Meta-Llama-3.1-{size}B-Instruct
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=llama3_json
+    - --chat-template={data_dir}/chat_templates/tool_chat_template_llama3.1_json.jinja
+  - quantizations:
+    - GPTQ-INT4
+    sizes:
+    - 405
+    source: model_scope
+    model_scope_model_id: LLM-Research/Meta-Llama-3.1-405B-Instruct-GPTQ-INT4
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=llama3_json
+    - --chat-template={data_dir}/chat_templates/tool_chat_template_llama3.1_json.jinja
+  description_zh_CN: Meta Llama 3.1 集合是一系列预训练和指令优化的大语言模型 (LLMs)。这些模型在 8B、70B 和 405B 的大小中预训练和指令优化。Llama
+    3.1 启动指令优化的文本仅模型（8B、70B、405B）是为多语言对话使用场景优化的，而且在常见的工业基准测试中表现出色。
+- name: Qwen3
+  description: Qwen3 is a family of large language models in Qwen series, offering
+    a comprehensive suite of dense and mixture-of-experts (MoE) models. Built upon
+    extensive training, Qwen3 delivers groundbreaking advancements in reasoning, instruction-following,
+    agent capabilities, and multilingual support.
+  home: https://qwenlm.github.io
+  icon: /static/catalog_icons/qwen.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 0.6
+  - 1.7
+  - 4
+  - 8
+  - 14
+  - 30
+  - 32
+  - 235
+  licenses:
+  - apache-2.0
+  release_date: '2025-04-29'
+  order: 1
+  templates:
+  - quantizations: &id001
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - BF16
+    sizes:
+    - 0.6
+    - 1.7
+    - 4
+    - 8
+    - 14
+    - 32
+    source: model_scope
+    model_scope_model_id: unsloth/Qwen3-{size}B-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+    backend_parameters: &id002
+    - --temp=0.6
+    - --top-k=20
+    - --top-p=0.95
+    - --min-p=0
+  - quantizations: *id001
+    sizes:
+    - 30
+    source: model_scope
+    model_scope_model_id: unsloth/Qwen3-30B-A3B-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+    backend_parameters: *id002
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_S
+    - Q4_0
+    - Q6_K
+    - Q8_0
+    - BF16
+    sizes:
+    - 235
+    source: model_scope
+    model_scope_model_id: unsloth/Qwen3-235B-A22B-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+    backend_parameters: *id002
+  - quantizations:
+    - BF16
+    source: model_scope
+    sizes:
+    - 0.6
+    - 1.7
+    - 4
+    - 8
+    - 14
+    - 32
+    model_scope_model_id: Qwen/Qwen3-{size}B
+    replicas: 1
+    backend: vllm
+    backend_parameters: &id003
+    - --enable-auto-tool-choice
+    - --tool-call-parser=hermes
+    - --enable-reasoning
+    - --reasoning-parser=deepseek_r1
+  - quantizations:
+    - FP8
+    source: model_scope
+    sizes:
+    - 0.6
+    - 1.7
+    - 4
+    - 8
+    - 14
+    - 32
+    model_scope_model_id: Qwen/Qwen3-{size}B-FP8
+    replicas: 1
+    backend: vllm
+    backend_parameters: *id003
+  - quantizations:
+    - BF16
+    source: model_scope
+    sizes:
+    - 30
+    model_scope_model_id: Qwen/Qwen3-30B-A3B
+    replicas: 1
+    backend: vllm
+    backend_parameters: *id003
+  - quantizations:
+    - FP8
+    source: model_scope
+    sizes:
+    - 30
+    model_scope_model_id: Qwen/Qwen3-30B-A3B-FP8
+    replicas: 1
+    backend: vllm
+    backend_parameters: *id003
+  - quantizations:
+    - BF16
+    source: model_scope
+    sizes:
+    - 235
+    model_scope_model_id: Qwen/Qwen3-235B-A22B
+    replicas: 1
+    backend: vllm
+    backend_parameters: *id003
+  - quantizations:
+    - FP8
+    source: model_scope
+    sizes:
+    - 235
+    model_scope_model_id: Qwen/Qwen3-235B-A22B-FP8
+    replicas: 1
+    backend: vllm
+    backend_parameters: *id003
+  description_zh_CN: Qwen3 是 Qwen 系列中的一组大型语言模型，提供了一套全面的密集和混合专家（MoE）模型。基于广泛的训练，Qwen3 在推理、指令跟随、代理能力以及多语言支持方面取得了重大的进展。
+- name: Qwen2.5
+  description: Qwen2.5 is a family of large language models in Qwen series. Qwen2.5-instruct
+    includes a number of instruction-tuned language models ranging from 0.5 to 72
+    billion parameters.
+  home: https://qwenlm.github.io
+  icon: /static/catalog_icons/qwen.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 0.5
+  - 1.5
+  - 3
+  - 7
+  - 14
+  - 32
+  - 72
+  licenses:
+  - apache-2.0
+  - qwen-research
+  release_date: '2024-09-19'
+  templates:
+  - quantizations:
+    - q2_k
+    - q3_k_m
+    - q4_k_m
+    - q5_k_m
+    - q6_k
+    - q8_0
+    - fp16
+    sizes:
+    - 0.5
+    - 1.5
+    - 7
+    - 14
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-{size}B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - q2_k
+    - q3_k_m
+    - q4_k_m
+    - q5_k_m
+    - q6_k
+    - q8_0
+    - fp16
+    sizes:
+    - 3
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-3B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - q2_k
+    - q3_k_m
+    - q4_k_m
+    - q5_k_m
+    - q6_k
+    - q8_0
+    sizes:
+    - 32
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-32B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - fp16
+    sizes:
+    - 32
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-32B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}-*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - q2_k
+    - q3_k_m
+    - q4_k_m
+    - q5_k_m
+    - q6_k
+    - q8_0
+    - fp16
+    sizes:
+    - 72
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-72B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-{size}B-Instruct
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=hermes
+  - quantizations:
+    - GPTQ-Int4
+    - GPTQ-Int8
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-{size}B-Instruct-{quantization}
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=hermes
+  description_zh_CN: Qwen2.5家族是Qwen系列中的大型语言模型家族。Qwen2.5-instruct包含了从0.5亿到72亿参数的指令调优语言模型数。
+- name: Qwen2.5 Coder
+  description: Qwen2.5-Coder is the latest series of Code-Specific Qwen large language
+    models (formerly known as CodeQwen). As of now, Qwen2.5-Coder has covered six
+    mainstream model sizes, 0.5, 1.5, 3, 7, 14, 32 billion parameters, to meet the
+    needs of different developers.
+  home: https://qwenlm.github.io
+  icon: /static/catalog_icons/qwen.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 0.5
+  - 1.5
+  - 3
+  - 7
+  - 14
+  - 32
+  licenses:
+  - apache-2.0
+  release_date: '2024-11-12'
+  templates:
+  - quantizations:
+    - q2_k
+    - q3_k_m
+    - q4_k_m
+    - q5_k_m
+    - q6_k
+    - q8_0
+    - fp16
+    sizes:
+    - 0.5
+    - 3
+    - 7
+    - 14
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-Coder-{size}B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - q2_k
+    - q3_k_m
+    - q4_k_m
+    - q5_k_m
+    - q6_k
+    - q8_0
+    sizes:
+    - 1.5
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - q2_k
+    - q3_k_m
+    - q4_k_m
+    - q5_k_m
+    - q6_k
+    - q8_0
+    sizes:
+    - 32
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-Coder-32B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - fp16
+    sizes:
+    - 32
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-Coder-32B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-Coder-{size}B-Instruct
+    replicas: 1
+    backend: vllm
+  - quantizations:
+    - GPTQ-Int4
+    - GPTQ-Int8
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-Coder-{size}B-Instruct-{quantization}
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Qwen2.5-Coder 是最新系列的 Code-Specific Qwen 大语言模型（以前称为 CodeQwen）。目前，Qwen2.5-Coder
+    已覆盖六种主流模型大小，0.5、1.5、3、7、14、32 亿参数，以满足不同开发者的需要。
+- name: QwQ
+  description: QwQ is the reasoning model of the Qwen series. Compared with conventional
+    instruction-tuned models, QwQ, which is capable of thinking and reasoning, can
+    achieve significantly enhanced performance in downstream tasks, especially hard
+    problems.
+  home: https://qwenlm.github.io
+  icon: /static/catalog_icons/qwen.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 32
+  licenses:
+  - apache-2.0
+  release_date: '2025-03-06'
+  templates:
+  - quantizations:
+    - q4_k_m
+    - q5_k_m
+    - q6_k
+    - q8_0
+    - fp16
+    source: model_scope
+    model_scope_model_id: Qwen/QwQ-32B-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: Qwen/QwQ-32B
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Qwen 是 Qwen 集成的推理模型。与传统的指令编译模型相比，Qwen，具备思考和推理能力的模型，能够显著提高下游任务的性能，特别是具有挑战性的问题。
+- name: Mistral
+  description: The 7B model released by Mistral AI, updated to version 0.3.
+  home: https://mistral.ai
+  icon: /static/catalog_icons/mistral.png
+  categories:
+  - llm
+  capabilities:
+  - context/32K
+  - tools
+  sizes:
+  - 7
+  licenses:
+  - apache-2.0
+  release_date: '2024-05-22'
+  templates:
+  - quantizations:
+    - Q2_K
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - f32
+    source: model_scope
+    model_scope_model_id: bartowski/Mistral-7B-Instruct-v0.3-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/mistral-7b-instruct-v0.3
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=mistral
+  description_zh_CN: 由莫瑞尔人工智能（Mistral AI）发布的7B模型，已更新至版本0.3.
+- name: Mistral Small 3.1
+  description: Mistral Small 3.1 (2503) is built upon Mistral Small 3 (2501). It adds
+    state-of-the-art vision understanding and enhances long context capabilities up
+    to 128k tokens without compromising text performance. With 24 billion parameters,
+    this model achieves top-tier capabilities in both text and vision tasks.
+  home: https://mistral.ai
+  icon: /static/catalog_icons/mistral.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  - vision
+  sizes:
+  - 24
+  licenses:
+  - apache-2.0
+  release_date: '2025-03-17'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: unsloth/Mistral-Small-3.1-24B-Instruct-2503-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/Mistral-Small-3.1-24B-Instruct-2503
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=mistral
+  description_zh_CN: Mistral Small 3.1 (2503) 由Mistral Small 3 (2501) 组建成。它添加了最先进的视理解能力和提升了长上下文能力到128k字节，而不会降低文本性能。拥有24亿参数，这个模型在文本和视任务上都实现了顶级能力。
+- name: Mistral Small
+  description: Mistral Small is a lightweight model designed for cost-effective use
+    in tasks like translation and summarization.
+  home: https://mistral.ai
+  icon: /static/catalog_icons/mistral.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 22
+  licenses:
+  - mrl
+  release_date: '2024-09-17'
+  templates:
+  - quantizations: *id004
+    source: model_scope
+    model_scope_model_id: bartowski/Mistral-Small-Instruct-2409-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: AI-ModelScope/Mistral-Small-Instruct-2409
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=mistral
+  description_zh_CN: Mistral Small是一款轻便模型，适用于低成本任务，如翻译和摘要。
+- name: Mistral Large
+  description: Mistral Large 2 is Mistral's new flagship model that is significantly
+    more capable in code generation, mathematics, and reasoning with 128k context
+    window and support for dozens of languages.
+  home: https://mistral.ai
+  icon: /static/catalog_icons/mistral.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 123
+  licenses:
+  - mrl
+  release_date: '2024-11-18'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: bartowski/Mistral-Large-Instruct-2411-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: mistral-community/Mistral-Large-Instruct-2411
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=mistral
+  description_zh_CN: Mistral Large 2 是 Mistral 的新旗舰产品，其代码生成能力、数学能力以及推理能力都显著增强，拥有128k上下文窗口，并支持多种语言。
+- name: Mistral Nemo
+  description: The Mistral-Nemo-Instruct-2407 Large Language Model (LLM) is an instruct
+    fine-tuned version of the Mistral-Nemo-Base-2407. Trained jointly by Mistral AI
+    and NVIDIA, it significantly outperforms existing models smaller or similar in
+    size.
+  home: https://mistral.ai
+  icon: /static/catalog_icons/mistral.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 12
+  licenses:
+  - apache-2.0
+  release_date: '2024-07-18'
+  templates:
+  - quantizations: *id004
+    source: model_scope
+    model_scope_model_id: bartowski/Mistral-Nemo-Instruct-2407-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/Mistral-Nemo-Instruct-2407
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=mistral
+  description_zh_CN: Mistral-Nemo-Instruct-2407 Large Language Model（LLM）是Mistral-Nemo-Base-2407的精简版。该模型由Mistral
+    AI和NVIDIA联合训练，显著超越了现有的模型，大小和类似模型的大小。
+- name: Codestral
+  description: Codestral is Mistral AI’s first-ever code model designed for code generation
+    tasks. Codestral is trained on a diverse dataset of 80+ programming languages,
+    including the most popular ones, such as Python, Java, C, C++, JavaScript, and
+    Bash.
+  home: https://mistral.ai
+  icon: /static/catalog_icons/mistral.png
+  categories:
+  - llm
+  capabilities:
+  - context/32K
+  sizes:
+  - 22
+  licenses:
+  - mnpl
+  release_date: '2024-05-29'
+  templates:
+  - quantizations:
+    - Q2_K
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - f32
+    source: model_scope
+    model_scope_model_id: bartowski/Codestral-22B-v0.1-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: LLM-Research/Codestral-22B-v0.1
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Codestral是Mistral AI的首次代码模型，用于代码生成任务。Codestral已训练在80多个编程语言的多语言数据集上，包括最受欢迎的语言，如Python、Java、C、C++、JavaScript和Bash。
+- name: Gemma3
+  description: Gemma 3 models are multimodal, handling text and image input and generating
+    text output, with open weights for both pre-trained variants and instruction-tuned
+    variants. Gemma 3 has a large, 128K context window, multilingual support in over
+    140 languages, and is available in more sizes than previous versions. Gemma 3
+    models are well-suited for a variety of text generation and image understanding
+    tasks, including question answering, summarization, and reasoning.
+  home: https://ai.google.dev/gemma
+  icon: /static/catalog_icons/google.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - vision
+  sizes:
+  - 1
+  - 4
+  - 12
+  - 27
+  licenses:
+  - gemma
+  release_date: '2025-03-12'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: bartowski/google_gemma-3-{size}b-it-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/gemma-3-{size}b-it
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Gemma 3 模型是多模态的，处理文本和图像输入，并生成文本输出，使用开放权衡的前训练版本和指令优化版本。Gemma 3 集成了超过
+    140 种语言，具有大型 128K 语境窗口，具有全球支持的语言，以及在更多规格上相比前版本更加丰富。Gemma 3 模型专适合于文本生成和图像理解任务，包括问答、摘要和推理。
+- name: Gemma2
+  description: Gemma is a family of lightweight, state-of-the-art open models from
+    Google, built from the same research and technology used to create the Gemini
+    models. They are text-to-text, decoder-only large language models, available in
+    English, with open weights for both pre-trained variants and instruction-tuned
+    variants. Gemma models are well-suited for a variety of text generation tasks,
+    including question answering, summarization, and reasoning. Their relatively small
+    size makes it possible to deploy them in environments with limited resources such
+    as a laptop, desktop or your own cloud infrastructure, democratizing access to
+    state of the art AI models and helping foster innovation for everyone.
+  home: https://ai.google.dev/gemma
+  icon: /static/catalog_icons/google.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 2
+  - 9
+  - 27
+  licenses:
+  - gemma
+  release_date: '2024-07-16'
+  templates:
+  - quantizations:
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    - f32
+    source: model_scope
+    model_scope_model_id: bartowski/gemma-2-{size}b-it-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/gemma-2-{size}b-it
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Gemma是一组来自Google的轻型、最新、开源的模型，基于与创建Gemini模型相同的研究和技术。它们是文本到文本，无解码器的大型语言模型，可用英语，具有开放权重，包括预训练的版本和指令调整的版本。Gemma模型非常适合各种文本生成任务，如问答、摘要和推理。其相对较小的大小使其可以部署在以有限资源（如笔记本电脑、桌面或你的云基础设施）为环境的环境中。这不仅为对AI模型进行创新提供了机会，而且有助于为所有人提供共享先进AI模型的平台。
+- name: Phi4 Mini
+  description: Phi-4-mini-instruct is a lightweight open model built upon synthetic
+    data and filtered publicly available websites - with a focus on high-quality,
+    reasoning dense data. The model belongs to the Phi-4 model family and supports
+    128K token context length. The model underwent an enhancement process, incorporating
+    both supervised fine-tuning and direct preference optimization to support precise
+    instruction adherence and robust safety measures.
+  home: https://azure.microsoft.com/en-us/products/phi
+  icon: /static/catalog_icons/microsoft.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 3.8
+  licenses:
+  - mit
+  release_date: '2025-02-26'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/Phi-4-mini-instruct-GGUF
+    model_scope_file_path: '*{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/Phi-4-mini-instruct
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Phi-4-mini-instruct 是一个轻量级的开放式模型，基于合成数据和过滤的公开可访问网站。它关注于高质量、推理密集的数据。这个模型属于
+    Phi-4 模型家族，并支持 128K 字符点长度。模型经过改进过程，将两个监督细化训练和直接偏好优化纳入，以支持精准的指令遵守和稳健的安全措施。
+- name: Phi3.5 Mini
+  description: Phi-3.5-mini is a lightweight, state-of-the-art open model built upon
+    datasets used for Phi-3 - synthetic data and filtered publicly available websites
+    - with a focus on very high-quality, reasoning dense data. The model belongs to
+    the Phi-3 model family and supports 128K token context length. The model underwent
+    a rigorous enhancement process, incorporating both supervised fine-tuning, proximal
+    policy optimization, and direct preference optimization to ensure precise instruction
+    adherence and robust safety measures.
+  home: https://azure.microsoft.com/en-us/products/phi
+  icon: /static/catalog_icons/microsoft.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 3.8
+  licenses:
+  - mit
+  release_date: '2024-08-16'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    - f32
+    source: model_scope
+    model_scope_model_id: bartowski/Phi-3.5-mini-instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: AI-ModelScope/Phi-3.5-mini-instruct
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Phi-3.5-mini 是一种轻量级、最先进的开源模型，它基于用于 Phi-3 - 混合数据和过滤公开可用网站的数据集，强调高质量、推理密集的数据。模型属于
+    Phi-3 模型家族，并支持 128K 情感长。模型经过了严格的增强过程，包括监督级精细调整、 proximal policy optimization 和直接偏好优化，以确保指令遵守精准、安全措施有力。
+- name: Phi4
+  description: Phi-4 is a state-of-the-art open model built upon a blend of synthetic
+    datasets, data from filtered public domain websites, and acquired academic books
+    and Q&A datasets. The goal of this approach was to ensure that small capable models
+    were trained with data focused on high quality and advanced reasoning.
+  home: https://azure.microsoft.com/en-us/products/phi
+  icon: /static/catalog_icons/microsoft.png
+  categories:
+  - llm
+  capabilities:
+  - context/16K
+  sizes:
+  - 14
+  licenses:
+  - mit
+  release_date: '2024-12-12'
+  templates:
+  - quantizations: *id004
+    source: model_scope
+    model_scope_model_id: bartowski/phi-4-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/phi-4
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Phi-4是一个最先进的开放模型，它是通过混合的合成数据集、数据过滤的公开域网站上的过滤数据以及来自学术书籍和问答数据的过滤数据建立的。该方法的目标是确保小规模且具备能力的模型在训练时使用数据，以高质量和高级推理为目标。
+- name: Deepseek V2.5
+  description: DeepSeek-V2.5 is an upgraded version that combines DeepSeek-V2-Chat
+    and DeepSeek-Coder-V2-Instruct. The new model integrates the general and coding
+    abilities of the two previous versions.
+  home: https://www.deepseek.com
+  icon: /static/catalog_icons/deepseek.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 236
+  licenses:
+  - deepseek
+  release_date: '2024-12-10'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: bartowski/DeepSeek-V2.5-1210-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --no-context-shift
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: deepseek-ai/DeepSeek-V2.5-1210
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --trust-remote-code
+  description_zh_CN: DeepSeek-V2.5 是一个升级版本，它将 DeepSeek-V2-Chat 和 DeepSeek-Coder-V2-Instructions
+    结合在一起。这个新模型将两个先前版本的通用和编码能力集成在一起。
+- name: Deepseek V3
+  description: DeepSeek-V3 is a strong Mixture-of-Experts (MoE) language model with
+    671B total parameters with 37B activated for each token. To achieve efficient
+    inference and cost-effective training, DeepSeek-V3 adopts Multi-head Latent Attention
+    (MLA) and DeepSeekMoE architectures, which were thoroughly validated in DeepSeek-V2.
+    Furthermore, DeepSeek-V3 pioneers an auxiliary-loss-free strategy for load balancing
+    and sets a multi-token prediction training objective for stronger performance.
+  home: https://www.deepseek.com
+  icon: /static/catalog_icons/deepseek.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 671
+  licenses:
+  - deepseek
+  release_date: '2024-12-26'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: unsloth/DeepSeek-V3-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --no-context-shift
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - FP8
+    source: model_scope
+    model_scope_model_id: deepseek-ai/DeepSeek-V3
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --trust-remote-code
+  description_zh_CN: DeepSeek-V3是一个强混合专家（MoE）语言模型，包含671个总参数和37个激活参数，用于每个令牌。为了实现高效的 inference
+    和成本效益的训练，DeepSeek-V3采用了多头隐式注意力（MLA）和DeepSeekMoE架构，这些在DeepSeek-V2中得到了验证。此外，DeepSeek-V3
+    创举性地采用了无辅助损失策略进行负载平衡，并为更强的性能设定了基于多token的预测训练目标。
+- name: Deepseek V3 0324
+  description: DeepSeek-V3-0324 is an updated version of DeepSeek-V3. It features
+    notable improvements over its predecessor in reasoning, front-end web development,
+    Chinese writing, Chinese search, and function calling.
+  home: https://www.deepseek.com
+  icon: /static/catalog_icons/deepseek.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 671
+  licenses:
+  - mit
+  release_date: '2025-03-24'
+  templates:
+  - quantizations:
+    - UD-IQ1_M
+    - UD-IQ1_S
+    - Q2_K
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/DeepSeek-V3-0324-GGUF
+    model_scope_file_path: '*-{quantization}-*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --no-context-shift
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - FP8
+    source: model_scope
+    model_scope_model_id: deepseek-ai/DeepSeek-V3-0324
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --trust-remote-code
+  description_zh_CN: DeepSeek-V3-0324 是 DeepSeek-V3 的更新版本。它在推理、前端 Web 开发、中文写作、中文搜索和函数调用等方面取得了显著进步。
+- name: Deepseek R1
+  description: DeepSeek's first-generation reasoning model that delivers superior
+    performance in math, code, and reasoning tasks. It effectively overcomes reasoning
+    challenges and achieves performance comparable to OpenAI-o1 across various benchmarks.
+    This includes six dense models distilled from DeepSeek-R1 based on Llama and Qwen.
+  home: https://www.deepseek.com
+  icon: /static/catalog_icons/deepseek.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 1.5
+  - 7
+  - 8
+  - 14
+  - 32
+  - 70
+  - 671
+  licenses:
+  - deepseek
+  release_date: '2025-01-20'
+  order: 2
+  templates:
+  - quantizations:
+    - FP8
+    sizes:
+    - 671
+    source: model_scope
+    model_scope_model_id: deepseek-ai/DeepSeek-R1
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --trust-remote-code
+    - --max-model-len=32768
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q8_0
+    - UD-IQ1_M
+    - UD-IQ1_S
+    - UD-IQ2_XXS
+    - UD-Q2_K_XL
+    sizes:
+    - 671
+    source: model_scope
+    model_scope_model_id: unsloth/DeepSeek-R1-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --temp=0.6
+    - --ctx-size=32768
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - F16
+    sizes:
+    - 7
+    - 14
+    - 32
+    source: model_scope
+    model_scope_model_id: unsloth/DeepSeek-R1-Distill-Qwen-{size}B-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --temp=0.6
+    - --ctx-size=32768
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    sizes:
+    - 1.5
+    source: model_scope
+    model_scope_model_id: unsloth/DeepSeek-R1-Distill-Qwen-{size}B-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --temp=0.6
+    - --ctx-size=32768
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    sizes:
+    - 1.5
+    - 7
+    - 14
+    - 32
+    source: model_scope
+    model_scope_model_id: deepseek-ai/DeepSeek-R1-Distill-Qwen-{size}B
+    replicas: 1
+    backend: vllm
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - F16
+    sizes:
+    - 8
+    - 70
+    source: model_scope
+    model_scope_model_id: unsloth/DeepSeek-R1-Distill-Llama-{size}B-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --temp=0.6
+    - --ctx-size=32768
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    sizes:
+    - 8
+    - 70
+    source: model_scope
+    model_scope_model_id: deepseek-ai/DeepSeek-R1-Distill-Llama-{size}B
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --max-model-len=32768
+  description_zh_CN: DeepSeek 的第一代 reasoning 模型，它在数学、编程和推理任务中表现出色。它有效地克服推理挑战，实现了与 OpenAI-O1
+    在各种基准上的性能相当。包括从 DeepSeek-R1 基于 Llama 和 Qwen 来源的六个稠密模型。
+- name: Yi1.5
+  description: Yi 1.5 is a high-performing, bilingual language model.
+  home: https://www.01.ai
+  icon: /static/catalog_icons/01ai.png
+  categories:
+  - llm
+  capabilities:
+  - context/32K
+  sizes:
+  - 6
+  - 9
+  - 34
+  licenses:
+  - apache-2.0
+  release_date: '2024-05-12'
+  templates:
+  - quantizations:
+    - Q2_K
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - f32
+    source: model_scope
+    model_scope_model_id: bartowski/Yi-1.5-{size}B-Chat-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: 01ai/Yi-1.5-{size}B-Chat
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Yi 1.5 是一种高表现的、双语语言模型。
+- name: Command R
+  description: C4AI Command R (08-2024) is a research release of a 32 billion parameter
+    highly performant generative model. Command R (08-2024) is a large language model
+    with open weights optimized for a variety of use cases including reasoning, summarization,
+    and question answering. Command R (08-2024) has the capability for multilingual
+    generation, trained on 23 languages and evaluated in 10 languages and highly performant
+    RAG capabilities.
+  home: https://cohere.com
+  icon: /static/catalog_icons/cohere.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 32
+  licenses:
+  - cc-by-nc-4.0
+  release_date: '2024-08-20'
+  templates:
+  - quantizations: *id004
+    source: model_scope
+    model_scope_model_id: bartowski/c4ai-command-r-08-2024-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/c4ai-command-r-08-2024
+    replicas: 1
+    backend: vllm
+  description_zh_CN: C4AI Command R (08-2024) 是一个具有32亿参数的高效生成模型的科研发布。C4AI Command R (08-2024)
+    是一个带有开放权重的大型语言模型，优化为多种使用场景，包括推理、摘要和问答。C4AI Command R (08-2024) 支持多语言生成，基于23种语言训练，并在10种语言中评估，具备高度性能的RAG能力。
+- name: Falcon3
+  description: Falcon3 family of Open Foundation Models is a set of pretrained and
+    instruct LLMs ranging from 1B to 10B parameters.
+  home: https://www.tii.ae
+  icon: /static/catalog_icons/falcon3.png
+  categories:
+  - llm
+  capabilities:
+  - context/32K
+  sizes:
+  - 1
+  - 3
+  - 7
+  - 10
+  licenses:
+  - falcon-llm-license
+  release_date: '2024-12-17'
+  templates:
+  - quantizations: *id004
+    source: model_scope
+    model_scope_model_id: bartowski/Falcon3-{size}B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: tiiuae/Falcon3-{size}B-Instruct
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Falcon3 系列的开放基础模型集是一系列预训练和指导 LLMs，从 1B 到 10B 参数。
+- name: Granite3.3
+  description: Granite3.3 is a family of 128K context length language models fine-tuned
+    for improved reasoning and instruction-following capabilities. The models demonstrate
+    significant improvements on benchmarks for measuring generic performance including
+    AlpacaEval-2.0 and Arena-Hard, as well as in mathematics, coding, and instruction
+    following.
+  home: https://www.ibm.com/granite
+  icon: /static/catalog_icons/ibm.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 2
+  - 8
+  licenses:
+  - apache-2.0
+  release_date: '2025-04-16'
+  templates:
+  - quantizations:
+    - Q2_K
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - f16
+    source: model_scope
+    model_scope_model_id: ibm-granite/granite-3.3-{size}b-instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: ibm-granite/granite-3.3-{size}b-instruct
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=granite
+  description_zh_CN: Granite3.3是一个包含128K长度上下文长度语言模型的家族，经过优化的训练，以提升推理和指令跟随能力。这些模型在测量通用性能的AlpacaEval-2.0和Arena-Hard等基准上的表现上取得了显著的提升，并在数学、编程和指令跟随方面也有显著的进步。
+- name: Granite3.1
+  description: Granite is a family of AI models purpose-built for business, engineered
+    from the ground up to ensure trust and scalability in AI-driven applications.
+  home: https://www.ibm.com/granite
+  icon: /static/catalog_icons/ibm.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 2
+  - 8
+  licenses:
+  - apache-2.0
+  release_date: '2024-12-18'
+  templates:
+  - quantizations: *id004
+    source: model_scope
+    model_scope_model_id: bartowski/granite-3.1-{size}b-instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: AI-ModelScope/granite-3.1-{size}b-instruct
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=granite
+  description_zh_CN: 大理石是专门为商业设计的AI模型家族，由从地面开始打造而来的人工智能模型确保了在AI驱动应用中的信任和可扩展性。
+- name: Llama3.1 Nemotron
+  description: Llama-3.1-Nemotron-70B-Instruct is a large language model customized
+    by NVIDIA to improve the helpfulness of LLM generated responses to user queries.
+  home: https://www.nvidia.com
+  icon: /static/catalog_icons/nvidia.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - tools
+  sizes:
+  - 70
+  licenses:
+  - llama3.1
+  release_date: '2024-10-12'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: bartowski/Llama-3.1-Nemotron-70B-Instruct-HF-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: AI-ModelScope/Llama-3.1-Nemotron-70B-Instruct-HF
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enable-auto-tool-choice
+    - --tool-call-parser=llama3_json
+    - --chat-template={data_dir}/chat_templates/tool_chat_template_llama3.1_json.jinja
+  description_zh_CN: Llama-3.1-Nemotron-70B-Instruct是NVIDIA为LLM生成回答而定制的大型语言模型，旨在提高LLM生成回答的方便性。
+- name: GLM4 0414
+  description: GLM-4-0414 is a family of models with performance comparable to OpenAI's
+    GPT series and DeepSeek's V3/R1 series. It delivers strong results in engineering
+    code generation, artifact creation, function calling, search-based question answering,
+    and report generation.
+  home: https://github.com/THUDM/GLM-4
+  icon: /static/catalog_icons/ZhipuAI.png
+  categories:
+  - llm
+  capabilities:
+  - context/32k
+  sizes:
+  - 9
+  - 32
+  licenses:
+  - mit
+  release_date: '2025-04-14'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    - bf16
+    source: model_scope
+    model_scope_model_id: bartowski/THUDM_GLM-4-{size}B-0414-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: ZhipuAI/GLM-Z1-{size}B-0414
+    replicas: 1
+    backend: vllm
+  description_zh_CN: GLM-4-0414 是一个与 OpenAI 的 GPT 系列和 DeepSeek 的 V3/R1 系列模型具有相当性能的家族。它在工程代码生成、实体创建、函数调用、搜索问题回答和报告生成方面取得了强大的结果。
+- name: GLM4 Z1 0414
+  description: GLM-4-Z1 models are reasoning models with deep thinking capabilities
+    in the GLM-4-0414 series. They demonstrate excellent performance in mathematical
+    reasoning and general tasks.
+  home: https://github.com/THUDM/GLM-4
+  icon: /static/catalog_icons/ZhipuAI.png
+  categories:
+  - llm
+  capabilities:
+  - context/32k
+  sizes:
+  - 9
+  - 32
+  licenses:
+  - mit
+  release_date: '2025-04-14'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    - bf16
+    source: model_scope
+    model_scope_model_id: bartowski/THUDM_GLM-Z1-{size}B-0414-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+    backend_parameters:
+    - --ctx-size=32768
+    - --temp=0.6
+    - --top-p=0.95
+    - --top-k=40
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: ZhipuAI/GLM-Z1-{size}B-0414
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --max-model-len=32768
+  description_zh_CN: GLM-4-Z1模型是GLM-4-0414系列中具有深思熟虑能力的推理模型。它们在数学推理和通用任务方面表现出卓越的性能。
+- name: GLM4
+  description: GLM-4-9B is the open-source version of the latest generation of pre-trained
+    models in the GLM-4 series launched by Zhipu AI. In the evaluation of data sets
+    in semantics, mathematics, reasoning, code, and knowledge, GLM-4-9B and its human
+    preference-aligned version GLM-4-9B-Chat have shown superior performance beyond
+    Llama-3-8B.
+  home: https://github.com/THUDM/GLM-4
+  icon: /static/catalog_icons/ZhipuAI.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  sizes:
+  - 9
+  licenses:
+  - glm-4
+  release_date: '2024-08-26'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: bartowski/glm-4-9b-chat-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: ZhipuAI/glm-4-9b-chat
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --trust-remote-code
+  description_zh_CN: GLM-4-9B是Zhipu AI在GLM-4系列最新一代预训练模型中推出的开放源代码版本。在对语义、数学、推理、代码和知识的评估中，GLM-4-9B及其人类偏好匹配的版本GLM-4-9B-Chat表现出了超出
+    llama-3-8B 的卓越性能。
+- name: Qwen2.5 VL
+  description: Qwen2.5-VL is a collection of vision-language models of Qwen, excelling
+    in visual understanding, document analysis, and long-video comprehension. It accurately
+    localizes objects, extracts structured data from images, and functions as an interactive
+    visual agent capable of reasoning and tool use. It outperforms previous models
+    and rivals GPT-4o in tasks like document and diagram understanding.
+  home: https://qwenlm.github.io
+  icon: /static/catalog_icons/qwen.png
+  categories:
+  - llm
+  capabilities:
+  - context/32K
+  - vision
+  sizes:
+  - 3
+  - 7
+  - 32
+  - 72
+  licenses:
+  - apache-2.0
+  - qwen
+  release_date: '2025-01-26'
+  templates:
+  - quantizations:
+    - Q4_K_M
+    - Q8_0
+    - f16
+    sizes:
+    - 3
+    - 7
+    - 72
+    source: model_scope
+    model_scope_model_id: ggml-org/Qwen2.5-VL-{size}B-Instruct-GGUF
+    model_scope_file_path: Qwen2.5-VL-*-{quantization}*.gguf
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --visual-max-image-size=1344
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-VL-{size}B-Instruct
+    replicas: 1
+    backend: vllm
+  - quantizations:
+    - AWQ
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2.5-VL-{size}B-Instruct-{quantization}
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Qwen2.5-VL 是 Qwen 2.5-VL 的集合，能够很好地在视觉理解和文档分析方面表现出色。它能够准确地定位对象，从图像中提取结构化的数据，并且可以作为交互式视觉代理，具有推理和工具使用的能力。它超越了之前模型和与
+    GPT-4o 相比的在理解文档和图解方面的任务。
+- name: Qwen2 VL
+  description: Qwen2-VL is a collection of vision language models based on Qwen2 in
+    the Qwen model familities. Qwen2-VL achieves state-of-the-art performance on visual
+    understanding benchmarks, including MathVista, DocVQA, RealWorldQA, MTVQA, etc.
+  home: https://qwenlm.github.io
+  icon: /static/catalog_icons/qwen.png
+  categories:
+  - llm
+  capabilities:
+  - context/32K
+  - vision
+  sizes:
+  - 2
+  - 7
+  - 72
+  licenses:
+  - apache-2.0
+  - qwen
+  release_date: '2024-08-29'
+  templates:
+  - quantizations: *id004
+    sizes:
+    - 2
+    - 7
+    source: model_scope
+    model_scope_model_id: bartowski/Qwen2-VL-{size}B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --visual-max-image-size=1344
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    sizes:
+    - 72
+    source: model_scope
+    model_scope_model_id: bartowski/Qwen2-VL-{size}B-Instruct-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --visual-max-image-size=1344
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2-VL-{size}B-Instruct
+    replicas: 1
+    backend: vllm
+  - quantizations:
+    - GPTQ-Int4
+    - GPTQ-Int8
+    source: model_scope
+    model_scope_model_id: Qwen/Qwen2-VL-{size}B-Instruct-{quantization}
+    replicas: 1
+    backend: vllm
+  description_zh_CN: Qwen2-VL 是基于 Qwen2 在 Qwen 职业家族中的一个集合。Qwen2-VL 成功在视觉理解和评估基准测试中取得最先进的性能，包括
+    MathVista、DocVQA、RealWorldQA、MTVQA 等。
+- name: QvQ Preview
+  description: QVQ-72B-Preview is an experimental research model developed by the
+    Qwen team, focusing on enhancing visual reasoning capabilities.
+  home: https://qwenlm.github.io
+  icon: /static/catalog_icons/qwen.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - vision
+  sizes:
+  - 72
+  licenses:
+  - qwen
+  release_date: '2024-12-25'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: bartowski/QVQ-72B-Preview-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --visual-max-image-size=1344
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: Qwen/QVQ-72B-Preview
+    replicas: 1
+    backend: vllm
+  description_zh_CN: QVQ-72B-Preview 是由 Qwen 联合团队开发的实验性研究模型，旨在增强视觉推理能力。
+- name: Llama3.2 Vision
+  description: The Llama 3.2-Vision collection of multimodal large language models
+    (LLMs) is a collection of pretrained and instruction-tuned image reasoning generative
+    models in 11B and 90B sizes (text + images in / text out). The Llama 3.2-Vision
+    instruction-tuned models are optimized for visual recognition, image reasoning,
+    captioning, and answering general questions about an image. The models outperform
+    many of the available open source and closed multimodal models on common industry
+    benchmarks.
+  home: https://www.llama.com/
+  icon: /static/catalog_icons/meta.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - vision
+  sizes:
+  - 11
+  - 90
+  licenses:
+  - llama3.2
+  release_date: '2024-09-25'
+  templates:
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/Llama-3.2-{size}B-Vision-Instruct
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --enforce-eager
+    - --max-num-seqs=16
+    - --max-model-len=8192
+  description_zh_CN: 3.2-Vision 版本的多模态大型语言模型集合（LLMs）是一个在 11B 和 90B 声音大小中预训练并优化图像推理生成模型的集合。3.2-Vision
+    版本的优化模型是专为视觉识别、图像推理、captioning 和回答关于图像的一般问题而优化的。模型在常见的行业基准上超过了许多已公开的开源和闭源多模态模型。
+- name: Pixtral
+  description: The Pixtral-12B-2409 is a Multimodal Model of 12B parameters plus a
+    400M parameter vision encoder.
+  home: https://mistral.ai
+  icon: /static/catalog_icons/mistral.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - vision
+  sizes:
+  - 12
+  licenses:
+  - apache-2.0
+  release_date: '2024-09-11'
+  templates:
+  - quantizations:
+    - Q2_K_L
+    - Q3_K_M
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K_L
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: bartowski/mistral-community_pixtral-12b-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: unsloth/Pixtral-12B-2409
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --limit-mm-per-prompt=image=4
+  description_zh_CN: Pixtral-12B-2409 是一个包含 12B 参数的多模态模型，以及一个 400M 参数的视图编码器。
+- name: Phi4 Multimodal Instruct
+  description: Phi-4-multimodal-instruct is a lightweight open multimodal foundation
+    model that leverages the language, vision, and speech research and datasets used
+    for Phi-3.5 and 4.0 models. The model processes text, image, and audio inputs,
+    generating text outputs, and comes with 128K token context length.
+  home: https://azure.microsoft.com/en-us/products/phi
+  icon: /static/catalog_icons/microsoft.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - vision
+  sizes:
+  - 5
+  licenses:
+  - mit
+  release_date: '2025-02-27'
+  templates:
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: LLM-Research/Phi-4-multimodal-instruct
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --trust-remote-code
+  description_zh_CN: Phi-4-multimodal-instruct 是一个轻量级的开放多模态基础模型，它利用 Phi-3.5 和 4.0 模型用于
+    Phi-4 模型的研究和数据。该模型处理文本、图像和音频输入，生成文本输出，并带有 128K 段文本上下文长度。
+- name: Phi3.5 Vision
+  description: Phi-3.5-vision is a lightweight, state-of-the-art open multimodal model
+    built upon datasets which include - synthetic data and filtered publicly available
+    websites - with a focus on very high-quality, reasoning dense data both on text
+    and vision. The model belongs to the Phi-3 model family, and the multimodal version
+    comes with 128K context length (in tokens) it can support. The model underwent
+    a rigorous enhancement process, incorporating both supervised fine-tuning and
+    direct preference optimization to ensure precise instruction adherence and robust
+    safety measures.
+  home: https://azure.microsoft.com/en-us/products/phi
+  icon: /static/catalog_icons/microsoft.png
+  categories:
+  - llm
+  capabilities:
+  - context/128K
+  - vision
+  sizes:
+  - 4
+  licenses:
+  - mit
+  release_date: '2024-08-22'
+  templates:
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: LLM-Research/Phi-3.5-vision-instruct
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --trust-remote-code
+  description_zh_CN: Phi-3.5 是一种轻量级、最先进的多模态模型，它基于包括合成数据和过滤公开可用网站在内的大量数据，具有高度高质量的推理密集型数据。模型属于
+    Phi-3 模型家族，多模态版本在支持文本和视觉推理的上下文中具有 128K 词语长度（使用 Tokens）。模型经过严格的增强过程，包括监督精细调整和直接偏好优化，确保精确指令遵从性和鲁棒的安全性。
+- name: InternVL3
+  description: InternVL3 is an advanced multimodal large language model (MLLM) series
+    that demonstrates superior overall performance. InternVL3 exhibits superior multimodal
+    perception and reasoning capabilities, while further extending its multimodal
+    capabilities to encompass tool usage, GUI agents, industrial image analysis, 3D
+    vision perception, and more.
+  home: https://github.com/opengvlab
+  icon: /static/catalog_icons/OpenGVLab.jpeg
+  categories:
+  - llm
+  capabilities:
+  - context/32K
+  - vision
+  sizes:
+  - 1
+  - 2
+  - 8
+  - 9
+  - 14
+  - 38
+  - 78
+  licenses:
+  - mit
+  release_date: '2025-04-11'
+  templates:
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: OpenGVLab/InternVL3-{size}B
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --trust-remote-code
+  description_zh_CN: InternVL3 是一个高级多模态大型语言模型（MLLM）系列，它展示了优异的整体性能。 InternVL3 具备了超优秀的多模态感知和推理能力，并进一步扩展了其多模态能力，涵盖了工具使用、GUI代理、工业图像分析、三维视觉感知和更多。
+- name: InternVL2.5 MPO
+  description: InternVL2.5-MPO is an advanced multimodal large language model (MLLM)
+    series that demonstrates superior overall performance. This series builds upon
+    InternVL2.5 and Mixed Preference Optimization.
+  home: https://github.com/opengvlab
+  icon: /static/catalog_icons/OpenGVLab.jpeg
+  categories:
+  - llm
+  capabilities:
+  - context/32K
+  - vision
+  sizes:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 26
+  - 38
+  - 78
+  licenses:
+  - mit
+  release_date: '2024-12-20'
+  templates:
+  - quantizations:
+    - BF16
+    source: model_scope
+    model_scope_model_id: OpenGVLab/InternVL2_5-{size}B-MPO
+    replicas: 1
+    backend: vllm
+    backend_parameters:
+    - --trust-remote-code
+  description_zh_CN: IntervL2.5-MPO是一个多模态大型语言模型（MLLM）系列，展示了更好的总体表现。这一系列借鉴了InternVL2.5，并且混合偏好优化。
+- name: BGE M3
+  description: BGE-M3 is a new model from BAAI distinguished for its versatility in
+    Multi-Functionality, Multi-Linguality, and Multi-Granularity.
+  home: https://bge-model.com
+  icon: /static/catalog_icons/bge_logo.jpeg
+  categories:
+  - embedding
+  capabilities:
+  - dimensions/1024
+  - max_tokens/8192
+  licenses:
+  - mit
+  release_date: '2024-01-28'
+  templates:
+  - quantizations: &id005
+    - Q2_K
+    - Q3_K
+    - Q4_0
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/bge-m3-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: BGE-M3 是从 BAAI 大众推出的具有多功能性、多语性和多粒度的新型产品。
+- name: BGE Large ZH V1.5
+  description: BGE is short for BAAI general embedding. This is a Chinese text embedding
+    model with more reasonable similarity distribution.
+  home: https://bge-model.com
+  icon: /static/catalog_icons/bge_logo.jpeg
+  categories:
+  - embedding
+  capabilities:
+  - dimensions/1024
+  - max_tokens/512
+  licenses:
+  - mit
+  release_date: '2023-09-12'
+  templates:
+  - quantizations:
+    - q4_k_m
+    - q5_k_m
+    - q8_0
+    - f16
+    source: model_scope
+    model_scope_model_id: Embedding-GGUF/bge-large-zh-v1.5
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: BGE 是 BAAI 的通用嵌入。这个模型具有更合理的相似度分布。
+- name: BGE Large EN V1.5
+  description: BGE is short for BAAI general embedding. This is an English text embedding
+    model with more reasonable similarity distribution.
+  home: https://bge-model.com
+  icon: /static/catalog_icons/bge_logo.jpeg
+  categories:
+  - embedding
+  capabilities:
+  - dimensions/1024
+  - max_tokens/512
+  licenses:
+  - mit
+  release_date: '2023-09-12'
+  templates:
+  - quantizations:
+    - Q2_K
+    - Q3_K_L
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - fp16
+    - fp32
+    source: model_scope
+    model_scope_model_id: AI-ModelScope/bge-large-en-v1.5-gguf
+    model_scope_file_path: '*{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: BGE 是 BAAI 通用嵌入模型。它是一个使用更合理相似分布的英语文本嵌入模型。
+- name: BCE Embedding Base V1
+  description: Bilingual and Crosslingual Embedding (BCEmbedding) in English and Chinese,
+    developed by NetEase Youdao, encompasses EmbeddingModel and RerankerModel. The
+    EmbeddingModel specializes in generating semantic vectors, playing a crucial role
+    in semantic search and question-answering.
+  home: https://github.com/netease-youdao/BCEmbedding
+  icon: /static/catalog_icons/youdao.png
+  categories:
+  - embedding
+  capabilities:
+  - dimensions/768
+  - max_tokens/512
+  licenses:
+  - apache-2.0
+  release_date: '2024-01-05'
+  templates:
+  - quantizations: *id005
+    source: model_scope
+    model_scope_model_id: gpustack/bce-embedding-base_v1-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: Bilingual and Crosslingual Embedding (BCEmbedding) in English and
+    Chinese, developed by NetEase Youdao, encompasses EmbeddingModel and RerankerModel.
+    The EmbeddingModel specializes in generating semantic vectors, playing a crucial
+    role in semantic search and question-answering.
+- name: Jina Embeddings V2 Base EN
+  description: Jina-embeddings-v2-base-en is an English, monolingual embedding model
+    supporting 8192 sequence length. It is based on a BERT architecture (JinaBERT)
+    that supports the symmetric bidirectional variant of ALiBi to allow longer sequence
+    length. The backbone jina-bert-v2-base-en is pretrained on the C4 dataset. The
+    model is further trained on Jina AI's collection of more than 400 millions of
+    sentence pairs and hard negatives. These pairs were obtained from various domains
+    and were carefully selected through a thorough cleaning process.
+  home: https://jina.ai
+  icon: /static/catalog_icons/jina.png
+  categories:
+  - embedding
+  capabilities:
+  - dimensions/768
+  - max_tokens/8192
+  licenses:
+  - apache-2.0
+  release_date: '2024-01-25'
+  templates:
+  - quantizations: *id005
+    source: model_scope
+    model_scope_model_id: gpustack/jina-embeddings-v2-base-en-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: Jina-embeddings-v2-base-en 是一个支持 8192 个序列长度的英文，单语模型。它基于BERT架构 (JinaBERT)，支持
+    ALiBi 双向变体的对称双向形式，以便支持更长的序列长度。 backbone jina-bert-v2-base-en 是预训练在 C4 数据集上。模型进一步训练在
+    Jina AI 的集合中超过 400 万句对和硬负例上。这些对来自各种领域并经过仔细选择通过一个全面清理过程。
+- name: Jina Embeddings V2 Base ZH
+  description: jina-embeddings-v2-base-zh is a Chinese/English bilingual text embedding
+    model supporting 8192 sequence length. It is based on a BERT architecture (JinaBERT)
+    that supports the symmetric bidirectional variant of ALiBi to allow longer sequence
+    length. We have designed it for high performance in mono-lingual & cross-lingual
+    applications and trained it specifically to support mixed Chinese-English input
+    without bias.
+  home: https://jina.ai
+  icon: /static/catalog_icons/jina.png
+  categories:
+  - embedding
+  capabilities:
+  - dimensions/768
+  - max_tokens/8192
+  licenses:
+  - apache-2.0
+  release_date: '2024-01-25'
+  templates:
+  - quantizations: *id005
+    source: model_scope
+    model_scope_model_id: gpustack/jina-embeddings-v2-base-zh-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: 'jina-embeddings-v2-base-zh 是一个中文/英文双语的文本嵌入模型，支持 8192 个序列长度。它是基于
+    BERT 架构（JinaBERT）设计的，该架构支持 ALiBi 的对称双向变体，以支持更长的序列长度。我们设计它来在单语和跨语种应用中具有高性能，并特别针对在不携带偏义时支持混合中文-英语输入进行训练。
+
+
+    这是 JinaBERT（JinghainBERT）的中文/英文双语文本嵌入模型，支持8192个序列长度。它基于 BERT 架构，支持 ALiBi 对称双向变体，以支持更长的序列长度。我们为在单语和跨语种应用中具有高性能的设计而设计，特别针对支持在不携带偏义时在混合中文-英语输入上进行训练。'
+- name: Nomic Embed Text V1.5
+  description: Nomic-embed-text is a large context length text encoder that surpasses
+    OpenAI text-embedding-ada-002 and text-embedding-3-small performance on short
+    and long context tasks.
+  home: https://nomic.ai
+  icon: /static/catalog_icons/nomic.png
+  categories:
+  - embedding
+  capabilities:
+  - dimensions/768
+  - max_tokens/8192
+  licenses:
+  - apache-2.0
+  release_date: '2024-02-14'
+  templates:
+  - quantizations:
+    - Q2_K
+    - Q3_K_L
+    - Q4_0
+    - Q4_K_M
+    - Q5_K_M
+    - Q6_K
+    - Q8_0
+    - f16
+    - f32
+    source: model_scope
+    model_scope_model_id: nomic-ai/nomic-embed-text-v1.5-GGUF
+    model_scope_file_path: '*{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: Nomic-embed-text 是一个大型上下文长度文本编码器，它超越了 OpenAI 的文本嵌入 - ada - 002 和文本嵌入
+    - 3 小小性能，能在短和长上下文任务上表现出色。
+- name: BGE Reranker V2 M3
+  description: BGE-Reranker-V2-M3 is a reranker model from BAAI.
+  home: https://github.com/FlagOpen/FlagEmbedding
+  icon: /static/catalog_icons/bge_logo.jpeg
+  categories:
+  - reranker
+  licenses:
+  - apache-2.0
+  release_date: '2024-03-19'
+  templates:
+  - quantizations: *id005
+    source: model_scope
+    model_scope_model_id: gpustack/bge-reranker-v2-m3-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: BGE-Reranker-V2-M3 是 BAAI 提供的一款 reranker 模型。
+- name: BCE Reranker Base V1
+  description: Bilingual and Crosslingual Embedding (BCEmbedding) in English and Chinese,
+    developed by NetEase Youdao, encompasses EmbeddingModel and RerankerModel. The
+    Reranker model excels at refining search results and ranking tasks.
+  home: https://github.com/netease-youdao/BCEmbedding
+  icon: /static/catalog_icons/youdao.png
+  categories:
+  - reranker
+  licenses:
+  - apache-2.0
+  release_date: '2023-12-29'
+  templates:
+  - quantizations: *id005
+    source: model_scope
+    model_scope_model_id: gpustack/bce-reranker-base_v1-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: '中文翻译：
+
+
+    英文和中文的双语和跨语种嵌入（CEEmbedding）由网易云音乐开发，包括嵌入模型和重排序模型。重排序模型擅长优化搜索结果和任务的排序。'
+- name: Jina Reranker V2 Base Multilingual
+  description: The Jina Reranker v2 (jina-reranker-v2-base-multilingual) is a transformer-based
+    model that has been fine-tuned for text reranking task, which is a crucial component
+    in many information retrieval systems. It is a cross-encoder model that takes
+    a query and a document pair as input and outputs a score indicating the relevance
+    of the document to the query. The model is trained on a large dataset of query-document
+    pairs and is capable of reranking documents in multiple languages with high accuracy.
+  home: https://jina.ai
+  icon: /static/catalog_icons/jina.png
+  categories:
+  - reranker
+  licenses:
+  - cc-by-nc-4.0
+  release_date: '2024-06-26'
+  templates:
+  - quantizations: *id005
+    source: model_scope
+    model_scope_model_id: gpustack/jina-reranker-v2-base-multilingual-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: Jina Reranker v2 (jina-reranker-v2-base-multilingual) 是一个基于Transformer的模型，专为文本
+    reranking任务设计，该任务在许多信息检索系统中至关重要。它是一个多编码器模型，输入一个查询和文档对，并输出一个表示文档与查询相关性的分数。该模型通过训练一个大型查询-文档对的数据集，并能以高精度在多种语言中进行多文档的索引。
+- name: Jina Reranker V1 Turbo EN
+  description: This model is designed for blazing-fast reranking while maintaining
+    competitive performance. What's more, it leverages the power of our JinaBERT model
+    as its foundation. JinaBERT itself is a unique variant of the BERT architecture
+    that supports the symmetric bidirectional variant of ALiBi.
+  home: https://jina.ai
+  icon: /static/catalog_icons/jina.png
+  categories:
+  - reranker
+  licenses:
+  - apache-2.0
+  release_date: '2024-04-19'
+  templates:
+  - quantizations: *id005
+    source: model_scope
+    model_scope_model_id: gpustack/jina-reranker-v1-turbo-en-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: 这个模型专为快速排名而设计，同时保持了竞争性能。更进一步的是，它利用了我们JinaBERT模型作为基础。JinaBERT本身是BERT架构的独特形式，它支持ALiBi的对称双向变体。
+- name: Jina Reranker V1 Tiny EN
+  description: This model is designed for blazing-fast reranking while maintaining
+    competitive performance. What's more, it leverages the power of our JinaBERT model
+    as its foundation. JinaBERT itself is a unique variant of the BERT architecture
+    that supports the symmetric bidirectional variant of ALiBi.
+  home: https://jina.ai
+  icon: /static/catalog_icons/jina.png
+  categories:
+  - reranker
+  licenses:
+  - apache-2.0
+  release_date: '2024-04-19'
+  templates:
+  - quantizations: *id005
+    source: model_scope
+    model_scope_model_id: gpustack/jina-reranker-v1-tiny-en-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    cpu_offloading: true
+    distributed_inference_across_workers: true
+  description_zh_CN: 这个模型专为快速重排序设计，同时保持了强大的性能。更难得的是，它利用了我们JinaBERT模型作为基础。JinaBERT本身是一个独特的BERT变体，支持ALiBi的双向变体，即平衡双向变体。
+- name: Stable Diffusion V3.5 Large
+  description: Stable Diffusion 3.5 Large is a Multimodal Diffusion Transformer (MMDiT)
+    text-to-image model that features improved performance in image quality, typography,
+    complex prompt understanding, and resource-efficiency.
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - stabilityai-ai-community
+  release_date: '2024-10-22'
+  templates:
+  - quantizations:
+    - Q4_0
+    - Q4_1
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v3-5-large-GGUF
+    model_scope_file_path: '*large-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v3-5-large-GGUF
+    model_scope_file_path: '*large-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --image-no-text-encoder-model-offload
+  description_zh_CN: Stable Diffusion 3.5 Large 是一个改进了图像质量、 typography、复杂提示理解能力以及资源效率的多模态扩散变压器（MMDiT）文本到图像模型。
+- name: Stable Diffusion V3.5 Large Turbo
+  description: Stable Diffusion 3.5 Large Turbo is a Multimodal Diffusion Transformer
+    (MMDiT) text-to-image model with Adversarial Diffusion Distillation (ADD) that
+    features improved performance in image quality, typography, complex prompt understanding,
+    and resource-efficiency, with a focus on fewer inference steps.
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - stabilityai-ai-community
+  release_date: '2024-10-22'
+  templates:
+  - quantizations:
+    - Q4_0
+    - Q4_1
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v3-5-large-turbo-GGUF
+    model_scope_file_path: '*turbo-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v3-5-large-turbo-GGUF
+    model_scope_file_path: '*turbo-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --image-no-text-encoder-model-offload
+  description_zh_CN: Stable Diffusion 3.5 Large Turbo 是一个多模态差分Transformer（MMDiT）文本到图像模型，它结合了对抗差分学习（ADD），具有显著的图像质量、字体质量、复杂提示理解能力以及资源效率，同时特别强调了更低的推理步骤。
+- name: Stable Diffusion V3.5 Medium
+  description: Stable Diffusion 3.5 Medium is a Multimodal Diffusion Transformer with
+    improvements (MMDiT-X) text-to-image model that features improved performance
+    in image quality, typography, complex prompt understanding, and resource-efficiency.
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - stabilityai-ai-community
+  release_date: '2024-10-22'
+  templates:
+  - quantizations:
+    - Q4_0
+    - Q4_1
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v3-5-medium-GGUF
+    model_scope_file_path: '*medium-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v3-5-medium-GGUF
+    model_scope_file_path: '*medium-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --image-no-text-encoder-model-offload
+  description_zh_CN: 3.5 Medium 是一个多模态扩散变压器模型，该模型在图像质量、字体、复杂提示理解、和资源效率方面进行了改进（MMDiT-X）。
+- name: Stable Diffusion V3 Medium
+  description: Stable Diffusion 3 Medium is a Multimodal Diffusion Transformer (MMDiT)
+    text-to-image model that features greatly improved performance in image quality,
+    typography, complex prompt understanding, and resource-efficiency.
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - stabilityai-ai-community
+  release_date: '2024-06-12'
+  templates:
+  - quantizations:
+    - Q4_0
+    - Q4_1
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v3-medium-GGUF
+    model_scope_file_path: '*medium-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v3-medium-GGUF
+    model_scope_file_path: '*medium-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --image-no-text-encoder-model-offload
+  description_zh_CN: 稳定扩散 3 中间级是多模态扩散变压器（MMDiT）图像到文本的文本到图像模型，该模型在图像质量、字体理解、复杂prompt理解以及资源效率方面取得了显著的性能提升。
+- name: Stable Diffusion XL
+  description: SDXL is a model that can be used to generate and modify images based
+    on text prompts. It is a Latent Diffusion Model that uses two fixed, pretrained
+    text encoders (OpenCLIP-ViT/G and CLIP-ViT/L).
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - openrail++
+  release_date: '2023-07-26'
+  templates:
+  - quantizations: &id006
+    - Q4_0
+    - Q4_1
+    - Q8_0
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-xl-base-1.0-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  description_zh_CN: SDXL 是一种可以根据文本提示生成和修改图像的模型。它是一个基于文本提示的Latent Diffusion Model，使用了两个固定且预训练的文本编码器（OpenCLIP-ViT/G
+    和 CLIP-ViT/L）。
+- name: Stable Diffusion XL Inpainting
+  description: SD-XL Inpainting (0.1) is a latent text-to-image diffusion model capable
+    of generating photo-realistic images given any text input, with the extra capability
+    of inpainting the pictures by using a mask.
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - openrail++
+  release_date: '2023-09-01'
+  templates:
+  - quantizations: *id006
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-xl-inpainting-1.0-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  description_zh_CN: SD-XL Inpainting（0.1）是一种基于文本到图像（Text-to-Image）扩散模型，能够根据任何文本输入生成逼真的图像，同时还有额外的生成图片的可适应性，即通过使用掩模来对图片进行填充。
+- name: Stable Diffusion V2.1
+  description: This stable-diffusion-2-1 model is fine-tuned from stable-diffusion-2
+    (768-v-ema.ckpt) with an additional 55k steps on the same dataset (with punsafe=0.1),
+    and then fine-tuned for another 155k extra steps with punsafe=0.98.
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - openrail++
+  release_date: '2022-12-20'
+  templates:
+  - quantizations: *id006
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v2-1-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  description_zh_CN: 这个稳定分导数-2-1 模型经过从稳定分导数-2 (768-v-ema.ckpt) 经过额外的55K步骤后，再经过额外的155K步骤，最后进行更新。
+- name: Stable Diffusion V2.1 Turbo
+  description: SD-Turbo is a fast generative text-to-image model that can synthesize
+    photorealistic images from a text prompt in a single network evaluation. We release
+    SD-Turbo as a research artifact, and to study small, distilled text-to-image models.
+    For increased quality and prompt understanding, we recommend SDXL-Turbo.
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - stabilityai-ai-community
+  release_date: '2023-12-01'
+  templates:
+  - quantizations: *id006
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v2-1-turbo-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  description_zh_CN: SD-Turbo 是一种快速生成文本到图像的图像合成模型，可以从一个文本提示合成高质量的逼真图像。我们将其发布为研究艺术，以便研究小型、精炼的文本到图像模型。为了提高质量和理解，我们建议
+    SDXL-Turbo。
+- name: Stable Diffusion V2 Inpainting
+  description: This stable-diffusion-2-inpainting model is resumed from stable-diffusion-2-base
+    (512-base-ema.ckpt) and trained for another 200k steps. Follows the mask-generation
+    strategy presented in LAMA which, in combination with the latent VAE representations
+    of the masked image, are used as an additional conditioning.
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - openrail++
+  release_date: '2022-12-14'
+  templates:
+  - quantizations: *id006
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v2-inpainting-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  description_zh_CN: 该稳定的隐式扩散-2染色化模型是从稳定隐式扩散-2基础（512-base-ema.ckpt）恢复的，经过了另外20万步的训练。该模型在使用了与蒙版生成策略（LAMA）中结合了蒙版图像的表示的条件下进行训练。
+- name: Stable Diffusion V1.5 Inpainting
+  description: Stable Diffusion Inpainting is a latent text-to-image diffusion model
+    capable of generating photo-realistic images given any text input, with the extra
+    capability of inpainting the pictures by using a mask.
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - creativeml-openrail-m
+  release_date: '2022-11-24'
+  templates:
+  - quantizations: *id006
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v1-5-inpainting-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  description_zh_CN: Stable Diffusion Inpainting 是一种基于文本到图像的隐式文本-图像扩散模型，可以基于任何文本输入生成逼真照片，同时带有使用掩膜的图片
+    inpainting 功能。
+- name: Stable Diffusion V1.5
+  description: Stable Diffusion is a latent text-to-image diffusion model capable
+    of generating photo-realistic images given any text input.
+  home: https://stability.ai
+  icon: /static/catalog_icons/stability.png
+  categories:
+  - image
+  licenses:
+  - creativeml-openrail-m
+  release_date: '2022-11-24'
+  templates:
+  - quantizations: *id006
+    source: model_scope
+    model_scope_model_id: gpustack/stable-diffusion-v1-5-GGUF
+    model_scope_file_path: '*-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  description_zh_CN: 稳定 diffusion 是一种隐式文本到图像的扩散模型，能够根据任何输入文本生成逼真图像。
+- name: FLUX.1 Dev
+  description: FLUX.1 [dev] is a 12 billion parameter rectified flow transformer capable
+    of generating images from text descriptions.
+  home: https://blackforestlabs.ai
+  icon: /static/catalog_icons/blackforestlabs.png
+  categories:
+  - image
+  licenses:
+  - flux-1-dev-non-commercial-license
+  release_date: '2024-08-02'
+  templates:
+  - quantizations:
+    - Q4_0
+    - Q4_1
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: gpustack/FLUX.1-dev-GGUF
+    model_scope_file_path: '*dev-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/FLUX.1-dev-GGUF
+    model_scope_file_path: '*dev-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --image-no-text-encoder-model-offload
+  description_zh_CN: FLUX.1是一个基于12亿参数的纠正流转换器，可以生成从文本描述生成图像的系统。
+- name: FLUX.1 Schnell
+  description: FLUX.1 [schnell] is a 12 billion parameter rectified flow transformer
+    capable of generating images from text descriptions.
+  home: https://blackforestlabs.ai
+  icon: /static/catalog_icons/blackforestlabs.png
+  categories:
+  - image
+  licenses:
+  - apache-2.0
+  release_date: '2024-08-02'
+  templates:
+  - quantizations:
+    - Q4_0
+    - Q4_1
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: gpustack/FLUX.1-schnell-GGUF
+    model_scope_file_path: '*schnell-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/FLUX.1-schnell-GGUF
+    model_scope_file_path: '*schnell-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --image-no-text-encoder-model-offload
+  description_zh_CN: FLUX.1 是一个12亿参数的快速校准流体变压器，可以生成由文本描述生成的图像。
+- name: FLUX.1 Fill Dev
+  description: FLUX.1 Fill [dev] is a 12 billion parameter rectified flow transformer
+    capable of filling areas in existing images based on a text description.
+  home: https://blackforestlabs.ai
+  icon: /static/catalog_icons/blackforestlabs.png
+  categories:
+  - image
+  licenses:
+  - flux-1-dev-non-commercial-license
+  release_date: '2024-11-25'
+  templates:
+  - quantizations:
+    - Q4_0
+    - Q4_1
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: gpustack/FLUX.1-Fill-dev-GGUF
+    model_scope_file_path: '*dev-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/FLUX.1-Fill-dev-GGUF
+    model_scope_file_path: '*dev-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --image-no-text-encoder-model-offload
+  description_zh_CN: FLUX.1 Fill [dev] 是一个12亿参数的纠正流变压器，它可以根据文本描述在现有图像上填充区域。
+- name: FLUX.1 Lite
+  description: Flux.1 Lite is an 8B parameter transformer model distilled from the
+    FLUX.1-dev model. This version uses 7 GB less RAM and runs 23% faster while maintaining
+    the same precision (bfloat16) as the original model.
+  home: https://huggingface.co/Freepik/flux.1-lite-8B-alpha
+  icon: /static/catalog_icons/freepik.jpeg
+  categories:
+  - image
+  licenses:
+  - flux-1-dev-non-commercial-license
+  release_date: '2024-10-23'
+  templates:
+  - quantizations:
+    - Q4_0
+    - Q4_1
+    - Q8_0
+    source: model_scope
+    model_scope_model_id: gpustack/FLUX.1-lite-GGUF
+    model_scope_file_path: '*lite-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/FLUX.1-lite-GGUF
+    model_scope_file_path: '*lite-{quantization}*.gguf'
+    replicas: 1
+    backend: llama-box
+    backend_parameters:
+    - --image-no-text-encoder-model-offload
+  description_zh_CN: Flux.1 Lite 是从 FLUX.1-dev 模型中提炼而成的八进制参数变压器模型。该版本使用 7GB 更少的 RAM，运行速度是原模型的
+    23% 快，同时保持了相同的精度（bfloat16）。
+- name: Faster Whisper Large V3
+  description: Whisper is a state-of-the-art model for automatic speech recognition
+    (ASR) and speech translation, proposed in the paper Robust Speech Recognition
+    via Large-Scale Weak Supervision by Alec Radford et al. from OpenAI. Trained on
+    >5M hours of labeled data, Whisper demonstrates a strong ability to generalise
+    to many datasets and domains in a zero-shot setting. This is the conversion of
+    openai/whisper-large-v3 to the CTranslate2 model format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2023-11-23'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-whisper-large-v3
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: 语音识别（ASR）和语音翻译（ASR）等技术是当前的热门领域。为了克服这些技术的局限性和瓶颈，Alec Radford等人在OpenAI的论文《Robust
+    Speech Recognition via Large-Scale Weak Supervision》中提出了一种名为Whisper的模型。该模型在大规模弱监督的数据上训练，展示了在零样本设置中的强大泛化能力。这使得OpenAI/Whisper-large-v3可以转换为CTranslate2模型的格式。
+- name: Faster Whisper Large V2
+  description: Whisper is a pre-trained model for automatic speech recognition (ASR)
+    and speech translation. Trained on 680k hours of labelled data, Whisper models
+    demonstrate a strong ability to generalise to many datasets and domains without
+    the need for fine-tuning. This is the conversion of openai/whisper-large-v2 to
+    the CTranslate2 model format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2023-03-23'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-whisper-large-v2
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: Whisper 是一个预训练的模型，专为自动语音识别（ASR）和语音翻译（ASR）设计。该模型训练了680万小时的标记数据。经过训练，Whisper
+    模型在许多数据集和领域中都能表现出强大的泛化能力，不需要进行细调。这个是将 openai/whisper-large-v2 转换为 CTranslate2
+    模型格式的过程。
+- name: Faster Whisper Medium
+  description: Whisper is a pre-trained model for automatic speech recognition (ASR)
+    and speech translation. Trained on 680k hours of labelled data, Whisper models
+    demonstrate a strong ability to generalise to many datasets and domains without
+    the need for fine-tuning. This is the conversion of openai/whisper-medium to the
+    CTranslate2 model format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2023-03-23'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-whisper-medium
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: Whisper 是一个预训练的模型，专为自动语音识别（ASR）和语音翻译设计。它在 680,000 已标记的数据上训练，因此，
+    Whisper 模型表现出强大的泛化能力，能够在许多数据集和领域上进行准确的转换。这一转换过程是将 openai/whisper-medium 转换为 CTranslate2
+    模型格式。
+- name: Faster Whisper Medium EN
+  description: Whisper is a pre-trained model for automatic speech recognition (ASR)
+    and speech translation. Trained on 680k hours of labelled data, Whisper models
+    demonstrate a strong ability to generalise to many datasets and domains without
+    the need for fine-tuning. The English-only models were trained on the task of
+    speech recognition. This is the conversion of openai/whisper-medium.en to the
+    CTranslate2 model format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2023-03-23'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-whisper-medium.en
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: Whisper 是一个预训练的模型，专为自动语音识别（ASR）和语音翻译（VTR）设计。它被训练于 680,000 遍标注数据，因此
+    Whisper 模型在许多数据集和领域上表现出强大的通用能力，并不需要进行大规模的预训练。英语模型被训练于语音识别任务。这是将 openai/whisper-medium.en
+    转换为 CTranslate2 模型格式的过程。
+- name: Faster Whisper Small
+  description: Whisper is a pre-trained model for automatic speech recognition (ASR)
+    and speech translation. Trained on 680k hours of labelled data, Whisper models
+    demonstrate a strong ability to generalise to many datasets and domains without
+    the need for fine-tuning. This is the conversion of openai/whisper-small to the
+    CTranslate2 model format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2023-03-23'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-whisper-small
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: Whisper是一个用于自动语音识别（ASR）和语音翻译的预训练模型。它在68000小时的标记数据上训练，表明它可以有效地适应许多数据集和领域，并不需要进行细调。这是将openai/whisper-small转换为CTranslate2模型格式的过程。
+- name: Faster Whisper Small EN
+  description: Whisper is a pre-trained model for automatic speech recognition (ASR)
+    and speech translation. Trained on 680k hours of labelled data, Whisper models
+    demonstrate a strong ability to generalise to many datasets and domains without
+    the need for fine-tuning. This is the conversion of openai/whisper-small.en to
+    the CTranslate2 model format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2023-03-23'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-whisper-small.en
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: Whisper 是一个预训练的模型，用于自动语音识别（ASR）和语音翻译。它基于 680000 个标注好的数据集，演示了强大的泛化能力，无论是在多个数据集和领域上。这是将
+    openai/whisper-small.en 转换为 CTranslate2 模型格式。
+- name: Faster Distil Whisper Large V3 EN
+  description: This is the third and final installment of the Distil-Whisper English
+    series. It the knowledge distilled version of OpenAI's Whisper large-v3, the latest
+    and most performant Whisper model to date. This is the conversion of distil-whisper/distil-large-v3
+    to the CTranslate2 model format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2024-03-25'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-distil-whisper-large-v3
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: 这是Distil-Whisper English系列的第三集，是OpenAI的Whisper大模型的最新和最先进版本。该转换将Distil-Whisper/distil-large-v3转换为CTranslate2模型格式。
+- name: Faster Distil Whisper Large V2 EN
+  description: It is a distilled version of the Whisper model that is 6 times faster,
+    49% smaller, and performs within 1% WER on out-of-distribution evaluation sets.
+    This is the conversion of distil-whisper/distil-large-v2 to the CTranslate2 model
+    format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2024-01-19'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-distil-whisper-large-v2
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: 这是一个基于 Whisper 模型的精简版本，比 Whisper 模型快 6 倍，比 Whisper 模型小 49%，并能够在
+    1% WER（错误率）的测试集上实现。这是将 distil-whisper/distil-large-v2 转换成 CTranslate2 模式格式的过程。
+- name: Faster Distil Whisper Medium EN
+  description: It is a distilled version of the Whisper model that is 6 times faster,
+    49% smaller, and performs within 1% WER on out-of-distribution evaluation sets.
+    This is the conversion of distil-whisper/distil-medium.en to the CTranslate2 model
+    format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2023-01-19'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-distil-whisper-medium.en
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: 它是 Whisper 模型的凝缩版本，其 6 倍更快， 49% 更小，以及在未出站验证集上性能仅为 1% WER 的转化。这是
+    distil-whisper/distil-medium.en 到 CTranslate2 模型格式的转换。
+- name: Faster Whisper Tiny
+  description: Whisper is a pre-trained model for automatic speech recognition (ASR)
+    and speech translation. Trained on 680k hours of labelled data, Whisper models
+    demonstrate a strong ability to generalise to many datasets and domains without
+    the need for fine-tuning. This is the conversion of openai/whisper-tiny to the
+    CTranslate2 model format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2023-03-23'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-whisper-tiny
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: Whisper 是一个用于自动语音识别（ASR）和语音翻译的预训练模型。它基于 680k 个小时的标注数据， Whisper 模型表现出强大的泛化能力，能够适应多种数据集和领域，而无需进行精细调整。这是一项将
+    openai/whisper-tiny 转换为 CTranslate2 模型格式的转换。
+- name: Faster Whisper Tiny EN
+  description: Whisper is a pre-trained model for automatic speech recognition (ASR)
+    and speech translation. Trained on 680k hours of labelled data, Whisper models
+    demonstrate a strong ability to generalise to many datasets and domains without
+    the need for fine-tuning. This is the conversion of openai/whisper-tiny.en to
+    the CTranslate2 model format.
+  home: https://huggingface.co/Systran
+  icon: /static/catalog_icons/systran.png
+  categories:
+  - speech_to_text
+  licenses:
+  - mit
+  release_date: '2023-03-23'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/faster-whisper-tiny.en
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: Whisper 是一个用于自动语音识别（ASR）和语音翻译的预训练模型。它在 680000 个标定点上训练，展示了在多个数据集和领域中具有很强的泛化能力，不需要进行细调。这是将
+    openai/whisper-tiny.en 转换为 CTranslate2 模型格式的过程。
+- name: CosyVoice 300M
+  description: CosyVoice is a multi-lingual large voice generation model developed
+    by Alibaba.
+  home: https://github.com/FunAudioLLM
+  icon: /static/catalog_icons/FunAudioLLM.png
+  categories:
+  - text_to_speech
+  licenses:
+  - apache-2.0
+  release_date: '2024-07-05'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/CosyVoice-300M
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: CosyVoice 是由阿里推出的多语言大语音生成模型。
+- name: CosyVoice 300M Instruct
+  description: CosyVoice is a multi-lingual large voice generation model developed
+    by Alibaba.
+  home: https://github.com/FunAudioLLM
+  icon: /static/catalog_icons/FunAudioLLM.png
+  categories:
+  - text_to_speech
+  licenses:
+  - apache-2.0
+  release_date: '2024-07-05'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: gpustack/CosyVoice-300M-Instruct
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: CosyVoice是一个多语言大型语音生成模型，由阿里巴巴开发。
+- name: CosyVoice 300M SFT
+  description: CosyVoice is a multi-lingual large voice generation model developed
+    by Alibaba.
+  home: https://github.com/FunAudioLLM
+  icon: /static/catalog_icons/FunAudioLLM.png
+  categories:
+  - text_to_speech
+  licenses:
+  - apache-2.0
+  release_date: '2024-07-05'
+  templates:
+  - quantizations:
+    - FP16
+    source: model_scope
+    model_scope_model_id: iic/CosyVoice-300M-SFT
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: CosyVoice 是阿里巴巴开发的多语言大语音生成模型。
+- name: Dia
+  description: Dia is a text-to-speech model created by Nari Labs. Dia directly generates
+    highly realistic dialogue from a transcript. You can condition the output on audio,
+    enabling emotion and tone control. The model can also produce nonverbal communications
+    like laughter, coughing, clearing throat, etc.
+  home: https://narilabs.org
+  icon: /static/catalog_icons/narilabs.png
+  categories:
+  - text_to_speech
+  licenses:
+  - apache-2.0
+  sizes:
+  - 1.6
+  release_date: '2025-04-21'
+  templates:
+  - quantizations:
+    - FP32
+    source: model_scope
+    model_scope_model_id: nari-labs/Dia-1.6B
+    replicas: 1
+    backend: vox-box
+  description_zh_CN: Dia 是由Nari Labs创建的文本转语音模型。它直接从一个记录好的语音中生成高度真实的对话。您可以根据音频条件来控制输出。此外，该模型还能产生非言语沟通，如笑声、咳嗽、清喉咙等。

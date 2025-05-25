@@ -45,14 +45,14 @@ timeout = httpx.Timeout(connect=15.0, read=60.0, write=60.0, pool=10.0)
 
 @router.api_route("", methods=["GET", "POST", "PUT", "DELETE"])
 async def proxy(request: Request, url: str):
-
+    logger.debug(f"proxy request: {request.method} {url}")
     validate_http_method(request.method)
     validate_url(url)
 
     url = replace_hf_endpoint(url)
 
     forwarded_headers = process_headers(request.headers, url)
-
+    logger.debug(f"proxy request after replace with headers: {request.method} {url} {forwarded_headers}")
     async with httpx.AsyncClient(timeout=timeout) as client:
         try:
             data = (
@@ -71,6 +71,7 @@ async def proxy(request: Request, url: str):
                     continue
                 else:
                     res_headers[key] = value
+            logger.debug(f"proxy request with response: {url}  {res_headers} {response.status_code}")
             return Response(
                 status_code=response.status_code,
                 content=response.content,

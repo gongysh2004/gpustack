@@ -23,6 +23,7 @@ class ModelSetBase(BaseModel):
     name: str
     id: Optional[int] = None
     description: Optional[str] = None
+    description_zh_CN: Optional[str] = None
     order: Optional[int] = None
     home: Optional[str] = None
     icon: Optional[str] = None
