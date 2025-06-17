@@ -1,0 +1,209 @@
+docs_dir: aidocs
+site_name: aiMindServe 文档
+site_url: https://docs.aimindserve.ai-links.com
+theme:
+  name: material
+  logo: assets/logo-white.png
+  favicon: assets/logo.png
+  custom_dir: aidocs/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: orange
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: light blue
+      accent: orange
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+  features:
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - navigation.indexes
+    - content.tooltips
+    - navigation.path
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.action.view
+    - content.action.edit
+  icon:
+    repo: fontawesome/brands/github-alt
+  language: zh
+plugins:
+  - glightbox
+  - search
+  - i18n:
+      default_language: zh
+      docs_structure: folder
+      languages:
+        - locale: zh
+          name: 中文
+          build: true
+          default: true
+          nav_translations:
+            Overview: 概览
+            Quickstart: 快速开始
+            Installation: 安装
+            Installation Requirements: 安装要求
+            NVIDIA CUDA: NVIDIA CUDA
+            Online Installation: 在线安装
+            Air-Gapped Installation: 离线安装
+            AMD ROCm: AMD ROCm
+            Apple Metal: Apple Metal
+            Ascend CANN: 昇腾 CANN
+            Hygon DTK: 海光 DTK
+            Moore Threads MUSA: 摩尔线程 MUSA
+            CPU: CPU
+            Installation Script: 安装脚本
+            Uninstallation: 卸载
+            Upgrade: 升级
+            User Guide: 用户指南
+            Playground: 实验场
+            Playgound: 实验场
+            Chat: 聊天
+            Image: 图像
+            Audio: 音频
+            Embedding: 嵌入
+            Rerank: 重排序
+            Model Management: 模型管理
+            Model Catalog: 模型目录
+            Model File management: 模型文件管理
+            API Key Management: API 密钥管理
+            User Management: 用户管理
+            Inference Backends: 推理后端
+            Pinned Backend Versions: 固定后端版本
+            Compatibility Check: 兼容性检查
+            OpenAI Compatible APIs: OpenAI 兼容 API
+            Image Generation APIs: 图像生成 API
+            Rerank API: 重排序 API
+            Using Models: 使用模型
+            Using Large Language Models: 使用大语言模型
+            Using Vision Language Models: 使用视觉语言模型
+            Using Embedding Models: 使用嵌入模型
+            Using Reranker Models: 使用重排序模型
+            Using Image Generation Models: 使用图像生成模型
+            Recommended Parameters for Image Generation Models: 图像生成模型推荐参数
+            Editing Images: 编辑图像
+            Using Audio Models: 使用音频模型
+            Tutorials: 教程
+            Running DeepSeek R1 671B with Distributed vLLM: 使用分布式 vLLM 运行 DeepSeek R1 671B
+            Performing Distributed Inference Across Workers (llama-box): 跨工作节点执行分布式推理 (llama-box)
+            Inference On CPUs: CPU 推理
+            Inference with Tool Calling: 工具调用推理
+            Running on Copilot+ PCs with Snapdragon X: 在搭载 Snapdragon X 的 Copilot+ PC 上运行
+            Integrations: 集成
+            Integrate with Dify: 与 Dify 集成
+            Integrate with RAGFlow: 与 RAGFlow 集成
+            Architecture: 架构
+            Scheduler: 调度器
+            Troubleshooting: 故障排除
+            FAQ: 常见问题
+            API Reference: API 参考
+            CLI Reference: CLI 参考
+            Start: 启动
+            Draw: 绘图
+            Download Tools: 下载工具
+  #- img2fig cannot use this
+
+  - print-site:
+      enabled: true
+      print_page_title: '江苏九洲云数智科技有限公司 aiMindServe 模型推理服务手册'
+      print_page_basename: 'print_page'
+      enumerate_figures: false
+extra:
+  generator: false
+  version:
+    provider: mike
+extra_javascript:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/katex.min.css
+markdown_extensions:
+  - md_in_html
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - sane_lists
+  - pymdownx.details
+  - pymdownx.tilde
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.inlinehilite
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+nav:
+  - Home: index.md
+  - Overview: overview.md
+  #- Quickstart: quickstart.md
+  - Installation:
+      - Installation Requirements: installation/installation-requirements.md
+      - NVIDIA CUDA: installation/nvidia-cuda/online-installation.md
+      - AMD ROCm: installation/amd-rocm/online-installation.md
+      - Apple Metal: installation/apple-metal-installation.md
+      - Ascend CANN: installation/ascend-cann/online-installation.md
+      - Hygon DTK: installation/hygon-dtk/online-installation.md
+      - Moore Threads MUSA: installation/moorethreads-musa/online-installation.md
+      - CPU: installation/cpu/online-installation.md
+      - Uninstallation: installation/uninstallation.md
+  - Upgrade: upgrade.md
+  - User Guide:
+      - Playground:
+          - Playgound: user-guide/playground/index.md
+          - Chat: user-guide/playground/chat.md
+          - Image: user-guide/playground/image.md
+          - Audio: user-guide/playground/audio.md
+          - Embedding: user-guide/playground/embedding.md
+          - Rerank: user-guide/playground/rerank.md
+      - Model Management: user-guide/model-management.md
+      - Model Catalog: user-guide/model-catalog.md
+      - Model File management: user-guide/model-file-management.md
+      - API Key Management: user-guide/api-key-management.md
+      - User Management: user-guide/user-management.md
+      - Inference Backends: user-guide/inference-backends.md
+      - Pinned Backend Versions: user-guide/pinned-backend-versions.md
+      - Compatibility Check: user-guide/compatibility-check.md
+      - OpenAI Compatible APIs: user-guide/openai-compatible-apis.md
+      - Image Generation APIs: user-guide/image-generation-apis.md
+      - Rerank API: user-guide/rerank-api.md
+  - Using Models:
+      - Using Large Language Models: using-models/using-large-language-models.md
+      - Using Vision Language Models: using-models/using-vision-language-models.md
+      - Using Embedding Models: using-models/using-embedding-models.md
+      - Using Reranker Models: using-models/using-reranker-models.md
+      - Using Image Generation Models: using-models/using-image-generation-models.md
+      - Recommended Parameters for Image Generation Models: using-models/recommended-parameters-for-image-generation-models.md
+      - Editing Images: using-models/editing-images.md
+      - Using Audio Models: using-models/using-audio-models.md
+  - Tutorials:
+      - Running DeepSeek R1 671B with Distributed vLLM: tutorials/running-deepseek-r1-671b-with-distributed-vllm.md
+      - Performing Distributed Inference Across Workers (llama-box): tutorials/performing-distributed-inference-across-workers-llama-box.md
+      - Inference On CPUs: tutorials/inference-on-cpus.md
+      - Inference with Tool Calling: tutorials/inference-with-tool-calling.md
+  - Integrations:
+      - OpenAI Compatible APIs: integrations/openai-compatible-apis.md
+      - Integrate with Dify: integrations/interate-with-dify.md
+      - Integrate with RAGFlow: integrations/interate-with-ragflow.md
+  - Architecture: architecture.md
+  - Scheduler: scheduler.md
+  - Troubleshooting: troubleshooting.md
+  - FAQ: faq.md
+  - API Reference: api-reference.md
+  - CLI Reference:
+      - Start: cli-reference/start.md
+      - Chat: cli-reference/chat.md
+      - Draw: cli-reference/draw.md
+      - Download Tools: cli-reference/download-tools.md
