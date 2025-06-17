@@ -1,4 +1,4 @@
-# 在线安装
+# Ascend GPU上安装
 
 在 aiMindServe 中，`llama-box` 和 `vox-box` 后端支持 Ascend CANN 推理。
 

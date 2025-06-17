@@ -1,4 +1,4 @@
-# 在线安装
+# Moore Threads GPU上安装
 
 在 aiMindServe 中，`llama-box` 和 `vox-box` 后端支持 Moore Threads MUSA 推理。
 

@@ -1,4 +1,4 @@
-# 在线安装
+# Hygon GPU上安装
 
 在 aiMindServe 中，`llama-box` 和 `vox-box` 后端支持 Hygon DTK 推理。
 

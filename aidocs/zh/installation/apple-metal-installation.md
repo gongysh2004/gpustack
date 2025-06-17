@@ -1,4 +1,4 @@
-# Apple Metal 安装
+# Apple Metal 上安装
 
 ## 支持的设备
 

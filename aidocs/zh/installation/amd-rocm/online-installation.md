@@ -1,4 +1,4 @@
-# 在线安装
+# AMD ROCm 平台上安装
 
 在 aiMindServe 中，`llama-box` 和 `vox-box` 后端支持 AMD ROCm 推理。
 

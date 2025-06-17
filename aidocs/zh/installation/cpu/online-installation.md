@@ -1,4 +1,4 @@
-# 在线安装
+# CPU上安装
 
 在 aiMindServe 中，`llama-box` 和 `vox-box` 后端支持 CPU 推理。但与 GPU 相比，CPU 性能显著较低，因此仅推荐用于测试或小规模场景。
 

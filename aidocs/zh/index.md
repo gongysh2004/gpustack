@@ -2,10 +2,9 @@
 
 欢迎使用 aiMindServe 文档。本文档将帮助您了解和使用 aiMindServe。
 
-## 快速开始
+## 概述与安装
 
 - [概述](overview.md)
-- [快速开始](quickstart.md)
 - [安装要求](installation/installation-requirements.md)
 
 ## 用户指南
