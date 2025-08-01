@@ -16,6 +16,11 @@ def register(app: FastAPI):
             name=name,
         )
 
+    # Mount the site directory for user-guide
+    site_dir = "/manual"
+    if os.path.isdir(site_dir):
+        app.mount("/manual", StaticFiles(directory=site_dir), name="manual")
+
     @app.get("/", include_in_schema=False)
     async def index():
         return FileResponse(os.path.join(ui_dir, "index.html"))

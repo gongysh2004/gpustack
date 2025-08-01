@@ -26,7 +26,7 @@ def create_app(cfg: Config) -> FastAPI:
         await app.state.http_client.close()
 
     app = FastAPI(
-        title="GPUStack",
+        title="aiMindServe",
         lifespan=lifespan,
         response_model_exclude_unset=True,
         version=__version__,

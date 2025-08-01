@@ -12,6 +12,10 @@ env/
 build/
 develop-eggs/
 dist/
+.pip-cache/
+.poetry-cache/
+uidist/
+log
 downloads/
 eggs/
 .eggs/
@@ -159,3 +163,4 @@ __pycache__/
 
 # macOS
 .DS_Store
+hack/lib/.version

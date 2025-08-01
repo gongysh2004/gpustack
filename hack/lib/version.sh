@@ -25,6 +25,11 @@ function gpustack::version::get_version_vars() {
   GIT_COMMIT="unknown"
   GIT_VERSION="unknown"
 
+  # Read VERSION from .version file if it exists and VERSION is not already set
+  if [[ -z "${VERSION:-}" ]] && [[ -f "$(dirname "${BASH_SOURCE[0]}")/.version" ]]; then
+    VERSION=$(cat "$(dirname "${BASH_SOURCE[0]}")/.version" 2>/dev/null | tr -d '[:space:]')
+  fi
+
   # get the git tree state if the source was exported through git archive.
   # shellcheck disable=SC2016,SC2050
   if [[ '$Format:%%$' == "%" ]]; then

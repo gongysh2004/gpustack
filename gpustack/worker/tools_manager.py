@@ -66,7 +66,6 @@ class ToolsManager:
 
     def _check_and_set_download_base_url(self):
         urls = [
-            "https://github.com",
             "https://gpustack-1303613262.cos.ap-guangzhou.myqcloud.com",
         ]
 
@@ -335,6 +334,13 @@ class ToolsManager:
         ]
         install_command.extend(args)
 
+        # Add pip index if specified
+        pip_index = os.getenv("PIP_INDEX")
+        if pip_index:
+            # Insert --index-url and its value after the "install" command
+            install_command.insert(2, "--index-url")
+            install_command.insert(3, pip_index)
+
         env = os.environ.copy()
         if self._data_dir and self._bin_dir:
             env["PIPX_HOME"] = str(Path(self._data_dir) / "pipx")
@@ -343,7 +349,6 @@ class ToolsManager:
             raise Exception(
                 "Both data_dir and bin_dir must be set to install versioned packages using pipx."
             )
-
         try:
             logger.info(f"Installing {package} {version} using pipx")
             subprocess.run(install_command, env=env, check=True, text=True)

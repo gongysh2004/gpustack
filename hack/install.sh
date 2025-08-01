@@ -68,6 +68,7 @@ function copy_extra_static() {
 
 gpustack::log::info "+++ DEPENDENCIES +++"
 download_deps
-download_ui
+#download_ui
+cp -a "${ROOT_DIR}/uidist/." "${ROOT_DIR}/gpustack/ui"
 copy_extra_static
 gpustack::log::info "--- DEPENDENCIES ---"
