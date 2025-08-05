@@ -11,8 +11,21 @@ poetry lock
 ```
 # build gpustack ui
 ```
+cd gpustack-ui
 npm run build
 rm -rf ../gpustack/uidist ; cp -ap dist ../gpustack/uidist
+
+cd ../gpustack
+ROOT_DIR=`pwd`
+extra_static_path="${ROOT_DIR}/static"
+ui_static_path="${ROOT_DIR}/uidist/static"
+cp -a "${extra_static_path}/." "${ui_static_path}"
+
+```
+
+```
+cd gpustack-ui
+rsync -auvP dist/ ../gpustack/uidist/
 ```
 # build gpustack user guide
 ```
@@ -24,7 +37,7 @@ the manual is put at site.
 # build gpustack with multi stage
 ```
 export DOCKER_BUILDKIT=1
-export VERSION=v0.7.0-13
+export VERSION=v0.7.0-14
 ```
 
 ```
@@ -60,6 +73,7 @@ docker run -d --name aimindserve-server \
     -v /gm-models:/data/models \
     -v /root/gpustack/gpustack/gpustack/assets/model-catalog-modelscope-zh.yaml:/etc/model-catalog.yaml \
     -v /root/gpustack/gpustack/site:/manual \
+    -v /root/gpustack/gpustack/uidist:/ui \
     -e PIP_INDEX=https://mirrors.aliyun.com/pypi/simple/ \
     -e HF_ENDPOINT=https://hf-mirror.com \
     -e GPUSTACK_DEBUG=True \

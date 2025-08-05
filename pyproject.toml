@@ -4,7 +4,7 @@ version = "v0.0.0"
 description = "GPUStack"
 authors = ["GPUStack Authors <contact@gpustack.ai>"]
 readme = "README.md"
-include = ["*/third_party/config/**/*","*/ui/**/*", "gpustack.pth"]
+include = ["*/third_party/config/**/*", "gpustack.pth"]
 
 # Poetry configuration should be set via command line or environment variables
 # [tool.poetry.config] is not a valid section in pyproject.toml
