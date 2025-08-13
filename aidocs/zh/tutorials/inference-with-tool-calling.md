@@ -65,11 +65,11 @@
 模型部署并获得 API Key 后，可通过 aiMindServe API 调用模型。以下为 `curl` 示例（将 `<your-server-url>` 和 `<your-api-key>` 替换为实际值）：
 
 ```bash
-export GPUSTACK_SERVER_URL=<your-server-url>
-export GPUSTACK_API_KEY=<your-api-key>
-curl $GPUSTACK_SERVER_URL/v1-openai/chat/completions \
+export AIMINDSERVE_SERVER_URL=<your-server-url>
+export AIMINDSERVE_API_KEY=<your-api-key>
+curl $AIMINDSERVE_SERVER_URL/v1-openai/chat/completions \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer $GPUSTACK_API_KEY" \
+-H "Authorization: Bearer $AIMINDSERVE_API_KEY" \
 -d '{
   "model": "qwen2.5-7b-instruct",
   "messages": [

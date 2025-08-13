@@ -1,6 +1,6 @@
 # 概述
 
-![demo](../assets/gpustack-demo.gif)
+![demo](../assets/aimindserve-demo.jpg)
 
 aiMindServe 是一个开源的 AI 模型服务框架，旨在简化 AI 模型的部署和管理。它提供了一个统一的界面来部署和运行各种 AI 模型，包括大型语言模型（LLM）、图像生成模型、语音模型等。
 

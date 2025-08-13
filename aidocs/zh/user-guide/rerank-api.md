@@ -20,10 +20,10 @@ aiMindServe 通过 `/v1/rerank` 路径提供 [Jina 兼容重排序 API](https://
 以下是调用重排序 API 的示例：
 
 ```bash
-export GPUSTACK_API_KEY=your_api_key
+export AIMINDSERVE_API_KEY=your_api_key
 curl http://your_aimindserve_server_url/v1/rerank \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+    -H "Authorization: Bearer $AIMINDSERVE_API_KEY" \
     -d '{
         "model": "bge-reranker-v2-m3",
         "query": "What is a panda?",

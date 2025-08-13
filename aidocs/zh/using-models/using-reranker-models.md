@@ -43,10 +43,10 @@
 
 ```bash
 export SERVER_URL=<your-server-url>
-export GPUSTACK_API_KEY=<your-api-key>
+export AIMINDSERVE_API_KEY=<your-api-key>
 curl $SERVER_URL/v1/rerank \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+    -H "Authorization: Bearer $AIMINDSERVE_API_KEY" \
     -d '{
         "model": "bge-reranker-v2-m3",
         "query": "什么是熊猫？",

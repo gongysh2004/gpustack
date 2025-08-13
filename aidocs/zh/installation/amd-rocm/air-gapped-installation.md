@@ -75,7 +75,7 @@ docker run -d --name aimindserve \
 docker logs -f aimindserve
 ```
 
-若日志正常，可在浏览器中打开 `http://your_host_ip` 访问 GPUStack UI。使用用户名 `admin` 和默认密码登录。可通过以下命令获取默认密码：
+若日志正常，可在浏览器中打开 `http://your_host_ip` 访问 aiMindServe UI。使用用户名 `admin` 和默认密码登录。可通过以下命令获取默认密码：
 
 ```bash
 docker exec -it aimindserve cat /var/lib/gpustack/initial_admin_password
@@ -85,13 +85,13 @@ docker exec -it aimindserve cat /var/lib/gpustack/initial_admin_password
 
 你可以为 aiMindServe 添加更多 AMD GPU 节点。需在其他 AMD GPU 节点上添加工作节点，并指定 `--server-url` 和 `--token` 参数加入 aiMindServe
 
-在 GPUStack **服务器节点**上运行以下命令获取 token：
+在 aiMindServe **服务器节点**上运行以下命令获取 token：
 
 ```bash
 docker exec -it aimindserve cat /var/lib/gpustack/token
 ```
 
-在工作节点上运行以下命令注册到 GPUStack 服务器（请替换 URL 和 token）：
+在工作节点上运行以下命令注册到 aiMindServe 服务器（请替换 URL 和 token）：
 
 ```bash
 docker run -d --name aimindserve \

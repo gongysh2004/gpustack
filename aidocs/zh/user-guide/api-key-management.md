@@ -26,10 +26,10 @@ aiMindServe 支持通过 API 密钥进行身份认证。每个 aiMindServe 用�
 aiMindServe 支持将 API 密钥作为 Bearer Token 使用。以下是使用 curl 的示例：
 
 ```bash
-export GPUSTACK_API_KEY=your_api_key
+export AIMINDSERVE_API_KEY=your_api_key
 curl http://your_aimindserve_server_url/v1-openai/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+  -H "Authorization: Bearer $AIMINDSERVE_API_KEY" \
   -d '{
     "model": "llama3",
     "messages": [

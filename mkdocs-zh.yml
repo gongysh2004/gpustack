@@ -195,8 +195,8 @@ nav:
       - Inference with Tool Calling: tutorials/inference-with-tool-calling.md
   - Integrations:
       - OpenAI Compatible APIs: integrations/openai-compatible-apis.md
-      - Integrate with Dify: integrations/interate-with-dify.md
-      - Integrate with RAGFlow: integrations/interate-with-ragflow.md
+      - Integrate with Dify: integrations/integrate-with-dify.md
+      - Integrate with RAGFlow: integrations/integrate-with-ragflow.md
   - Architecture: architecture.md
   - Scheduler: scheduler.md
   - Troubleshooting: troubleshooting.md

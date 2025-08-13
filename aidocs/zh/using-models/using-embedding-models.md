@@ -43,9 +43,9 @@
 
 ```bash
 export SERVER_URL=<your-server-url>
-export GPUSTACK_API_KEY=<your-api-key>
+export AIMINDSERVE_API_KEY=<your-api-key>
 curl $SERVER_URL/v1-openai/embeddings \
-  -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+  -H "Authorization: Bearer $AIMINDSERVE_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "input": "The food was delicious and the waiter...",

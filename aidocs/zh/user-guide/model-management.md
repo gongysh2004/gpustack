@@ -4,7 +4,7 @@
 
 ## 部署模型
 
-目前支持来自 [Hugging Face](https://huggingface.co)、[ModelScope](https://modelscope.cn)、[Ollama](https://ollama.com/library) 和本地路径的模型。
+目前支持来自 [Hugging Face](https://huggingface.co)、[ModelScope](https://modelscope.cn)和本地路径的模型。
 
 ### 部署 Hugging Face 模型
 

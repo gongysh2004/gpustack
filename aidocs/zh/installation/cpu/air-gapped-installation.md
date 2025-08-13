@@ -1,8 +1,8 @@
 # 离线安装
 
-你可以在离线环境中安装 GPUStack。离线环境指的是 GPUStack 将在无网络连接的情况下安装。
+你可以在离线环境中安装 aimindserve. aimindserve 将在无网络连接的情况下安装。
 
-以下是在离线环境中安装 GPUStack 的可用方法：
+以下是在离线环境中安装 aimindserve 的可用方法：
 
 | 操作系统 | 架构           | 支持的安装方式                                                                                                                         |
 | -------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -40,24 +40,24 @@
 
 - [Docker](https://docs.docker.com/engine/install/)
 
-### 运行 GPUStack
+### 运行 aimindserve
 
-使用 Docker 运行 GPUStack 时，只要 Docker 镜像可用，即可在离线环境中直接使用。请按以下步骤操作：
+使用 Docker 运行 aimindserve 时，只要 Docker 镜像可用，即可在离线环境中直接使用。请按以下步骤操作：
 
-1. 在在线环境中拉取 GPUStack docker 镜像：
+1. 在在线环境中拉取 aimindserve docker 镜像：
 
 ```bash
-docker pull gpustack/gpustack:latest-cpu
+docker pull aimindserve/aimindserve:latest-cpu
 ```
 
 如果在线环境与离线环境在操作系统或架构上不同，请在拉取镜像时指定离线环境的操作系统和架构：
 
 ```bash
-docker pull --platform linux/amd64 gpustack/gpustack:latest-cpu
+docker pull --platform linux/amd64 aimindserve/aimindserve:latest-cpu
 ```
 
 2. 将 docker 镜像发布到私有仓库或直接加载到离线环境中。
-3. 参考 [Docker 安装](./online-installation.md#docker-安装) 指南使用 Docker 运行 GPUStack。
+3. 参考 [Docker 安装](./online-installation.md#docker-安装) 指南使用 Docker 运行 aimindserve
 
 ## pip 安装
 
@@ -71,7 +71,7 @@ docker pull --platform linux/amd64 gpustack/gpustack:latest-cpu
 python -V
 ```
 
-### 安装 GPUStack
+### 安装 aimindserve
 
 对于手动 pip 安装，你需要在在线环境中准备所需的包和工具，然后将其传输到离线环境中。
 
@@ -115,7 +115,7 @@ python -V
 pip wheel $PACKAGE_SPEC -w gpustack_offline_packages
 ```
 
-安装 GPUStack 以使用其 CLI：
+安装 aimindserve 以使用其 CLI：
 
 ```bash
 pip install gpustack

@@ -165,10 +165,10 @@ CASE 2: 输入图片非法
 ### curl（创建图片）
 
 ```bash
-export GPUSTACK_API_KEY=your_api_key
+export AIMINDSERVE_API_KEY=your_api_key
 curl http://your_aimindserve_server_url/v1-openai/image/generate \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+    -H "Authorization: Bearer $AIMINDSERVE_API_KEY" \
     -d '{
         "n": 1,
         "response_format": "b64_json",
@@ -185,9 +185,9 @@ curl http://your_aimindserve_server_url/v1-openai/image/generate \
 ### curl（图片编辑）
 
 ```bash
-export GPUSTACK_API_KEY=your_api_key
+export AIMINDSERVE_API_KEY=your_api_key
 curl http://your_gpustack_server_url/v1-openai/image/edit \
-    -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+    -H "Authorization: Bearer $AIMINDSERVE_API_KEY" \
     -F image="@otter.png" \
     -F mask="@mask.png" \
     -F prompt="A lovely cat" \

@@ -32,7 +32,7 @@ rsync -auvP dist/ ../gpustack/uidist/
 pip install -i https://mirrors.aliyun.com/pypi/simple mkdocs==1.6.1 mkdocs-material==9.6.11 mkdocs-print-site-plugin==2.7.3 mkdocs-glightbox==0.4.0 mkdocs-static-i18n==1.3.0
 mkdocs  build  -f mkdocs-zh.yml
 ```
-the manual is put at site.
+the manual is put at 'site'.
 
 # build gpustack with multi stage
 ```

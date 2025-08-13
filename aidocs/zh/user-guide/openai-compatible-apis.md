@@ -22,10 +22,10 @@ aiMindServe 通过 `/v1-openai` 路径提供 [OpenAI 兼容的 API](https://plat
 ### curl
 
 ```bash
-export GPUSTACK_API_KEY=your_api_key
+export AIMINDSERVE_API_KEY=your_api_key
 curl http://your_aimindserve_server_url/v1-openai/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+  -H "Authorization: Bearer $AIMINDSERVE_API_KEY" \
   -d '{
     "model": "llama3",
     "messages": [
@@ -47,7 +47,7 @@ curl http://your_aimindserve_server_url/v1-openai/chat/completions \
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://your_gpustack_server_url/v1", api_key="your_api_key")
+client = OpenAI(base_url="http://your_aimindserve_server_url/v1", api_key="your_api_key")
 
 completion = client.chat.completions.create(
   model="llama3",
@@ -67,7 +67,7 @@ const OpenAI = require("openai");
 
 const openai = new OpenAI({
   apiKey: "your_api_key",
-  baseURL: "http://your_gpustack_server_url/v1",
+  baseURL: "http://your_aimindserve_server_url/v1",
 });
 
 async function main() {

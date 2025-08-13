@@ -4,7 +4,7 @@ aiMindServe 允许管理员下载和管理模型文件。
 
 ## 添加模型文件
 
-aiMindServe 目前支持来自 [Hugging Face](https://huggingface.co)、[ModelScope](https://modelscope.cn)、[Ollama](https://ollama.com/library) 以及本地路径的模型。要添加模型文件，请进入 `资源` 页面并点击 `模型文件` 标签页。
+aiMindServe 目前支持来自 [Hugging Face](https://huggingface.co)、[ModelScope](https://modelscope.cn)以及本地路径的模型。要添加模型文件，请进入 `资源` 页面并点击 `模型文件` 标签页。
 
 ### 添加 Hugging Face 模型
 
@@ -12,7 +12,7 @@ aiMindServe 目前支持来自 [Hugging Face](https://huggingface.co)、[ModelSc
 2. 使用左上角的搜索栏按名称查找模型，例如 `Qwen/Qwen2.5-0.5B-Instruct`。如只需查找 GGUF 模型，可勾选 `GGUF` 复选框。
 3. _(可选)_ 对于 GGUF 模型，可在 `可用文件` 中选择所需的量化格式。
 4. 选择目标工作节点以下载模型文件。
-5. _(可选)_ 指定 `本地目录`，将模型下载到自定义路径，而不是 GPUStack 缓存目录。
+5. _(可选)_ 指定 `本地目录`，将模型下载到自定义路径，而不是 aiMindServe 缓存目录。
 6. 点击 `保存` 按钮。
 
 ### 添加 ModelScope 模型
