@@ -37,21 +37,22 @@ the manual is put at 'site'.
 # build gpustack with multi stage
 ```
 export DOCKER_BUILDKIT=1
-export VERSION=v0.7.0-14
+export PROXY=172.16.12.59
+export VERSION=v0.7.0-15
 ```
 
 ```
-docker buildx build --build-arg https_proxy=http://192.168.95.192:7890 --target base -t base:latest -f Dockerfile.new .
-docker buildx build --build-arg https_proxy=http://192.168.95.192:7890 --target base-build -t base-build:latest -f Dockerfile.new .
-docker buildx build --build-arg https_proxy=http://192.168.95.192:7890 --target flashinfer-build -t flashinfer-build:latest -f Dockerfile.new .
+docker buildx build --build-arg https_proxy=http://$PROXY:7890 --target base -t base:latest -f Dockerfile.new .
+docker buildx build --build-arg https_proxy=http://$PROXY:7890 --target base-build -t base-build:latest -f Dockerfile.new .
+docker buildx build --build-arg https_proxy=http://$PROXY:7890 --target flashinfer-build -t flashinfer-build:latest -f Dockerfile.new .
 
-docker buildx build --build-arg https_proxy=http://192.168.95.192:7890 --target flashinfer-install -t flashinfer-install:latest -f Dockerfile.new .
+docker buildx build --build-arg https_proxy=http://$PROXY:7890 --target flashinfer-install -t flashinfer-install:latest -f Dockerfile.new .
 
 ```
 
 ```
 echo $VERSION > hack/lib/.version
-docker buildx build --build-arg https_proxy=http://192.168.95.192:7890 \
+docker buildx build --build-arg https_proxy=http://$PROXY:7890 \
   -t aimindserve:$VERSION -f Dockerfile.new \
   --platform linux/amd64 \
   --cache-from base:latest,base-build:latest,flashinfer-build:latest,flashinfer-install:latest . 2>&1 | tee log$VERSION.txt
