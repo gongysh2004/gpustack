@@ -10,7 +10,15 @@ pip install  poetry==1.8.3
 poetry lock
 ```
 # build gpustack ui
+## install nodejs 18
 ```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/refs/heads/master/install.sh | bash
+nvm install 18
+
+```
+## build gpustack ui
+```
+nvm use 18
 cd gpustack-ui
 npm run build
 rm -rf ../gpustack/uidist ; cp -ap dist ../gpustack/uidist
@@ -22,7 +30,7 @@ ui_static_path="${ROOT_DIR}/uidist/static"
 cp -a "${extra_static_path}/." "${ui_static_path}"
 
 ```
-
+## update ui
 ```
 cd gpustack-ui
 rsync -auvP dist/ ../gpustack/uidist/
@@ -65,23 +73,35 @@ docker save registry.aimall.ai-links.com/ailinks/aimindserve:$VERSION -o aiminds
 
 # run
 ```
+MODELSPATH=/opt/aimindserve-models/
 docker stop aimindserve-server; docker rm aimindserve-server
 docker run -d --name aimindserve-server \
     --restart=unless-stopped \
     --network=host \
     --ipc=host \
     -v gpustack-data:/var/lib/gpustack \
-    -v /gm-models:/data/models \
+    -v ${MODELSPATH}:/data/models \
     -v /root/gpustack/gpustack/gpustack/assets/model-catalog-modelscope-zh.yaml:/etc/model-catalog.yaml \
     -v /root/gpustack/gpustack/site:/manual \
     -v /root/gpustack/gpustack/uidist:/ui \
     -e PIP_INDEX=https://mirrors.aliyun.com/pypi/simple/ \
     -e HF_ENDPOINT=https://hf-mirror.com \
     -e GPUSTACK_DEBUG=True \
-    aimindserve:$VERSION \
+    registry.aimall.ai-links.com/ailinks/aimindserve:$VERSION \
     --bootstrap-password=ailinks@1QAZ --port 32080 --debug --cache-dir /data/models --model-catalog-file /etc/model-catalog.yaml --disable-worker
 ```
 
+or to run with aifare:
+use the command to identify the gpus id and uuid:
+```
+nvidia-smi --query-gpu=index,uuid --format=csv,noheader,nounits
+```
+use the aifare admin to specify bypassing some gpus, for example we bypassed the 3-6 gpus. then run aimindserve with following command parameters:
+```
+  --gpus '"device=3,4,5,6"' \
+  --label gpu.direct=3,4,5,6 \
+```
+Use the following command to get token to be used by worker(s):
 ```
 docker exec -it aimindserve-server cat /var/lib/gpustack/token
 ```
