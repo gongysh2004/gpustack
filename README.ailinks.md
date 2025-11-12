@@ -110,6 +110,9 @@ docker exec -it aimindserve-server cat /var/lib/gpustack/token
 ```
 docker exec  aimindserve-server rm -f /usr/local/lib/python3.11/dist-packages/gpustack/routes/__pycache__/proxy.cpython-311.pyc
 docker cp gpustack/gpustack/routes/proxy.py aimindserve-server:/usr/local/lib/python3.11/dist-packages/gpustack/routes/proxy.py
+
+docker exec  aimindserve-server rm -f /opt/venvs/gpustack/lib/python3.11/site-packages/gpustack/routes/__pycache__/ui.cpython-311.pyc
+find /root/tmp/uidist/static/ -maxdepth 1 -name "*.png" -exec docker cp {} aimindserve:/opt/venvs/gpustack/lib/python3.11/site-packages/gpustack/ui/static/ \;
 ```
 # worker
 ```
@@ -123,4 +126,14 @@ docker run -d --name worker3 --restart=unless-stopped \
 aimindserve:v0.7.0-12 \
 --server-url https://models.dev.ai-links.com \
 --token 06fa7f609642fbea3a02d7dc41a40a5a --worker-ip 10.20.10.13 --debug --cache-dir /data/models
+```
+
+
+# quick patch community images‘s ui and doc
+```
+tar -czvf aimind.tar.gz uidist site gpustack/routes/ui.py
+rsync -avuP aimind.tar.gz lxgpu:~/
+docker cp gpustack/routes/ui.py gpustack:/opt/venvs/gpustack/lib/python3.11/site-packages/gpustack/routes/ui.py
+find uidist/static/ -maxdepth 1 -name "*.png" -exec docker cp {} aimindserve:/opt/venvs/gpustack/lib/python3.11/site-packages/gpustack/ui/static/ \;
+docker restart gpustack
 ```
